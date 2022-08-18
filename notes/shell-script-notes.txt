@@ -1,0 +1,538 @@
+shell script:
+=============
+
+-> to automate our compleate administration process
+
+Introduction :
+==============
+
+Handling script arguments :
+---------------------------
+
+1. $1,$2.... are used to refere 1st arg, 2nd arg ....etc
+2. $0 refers name of the current script
+3. args which are stored in $1 etc., are read only. we can't change from our script.
+4. $@ --> all args provided (where all args can  be treated one by one)
+5. $# --> to count the amount of args provided
+6. $* --> if you need a single string that contains all args (use in specific cases only)
+
+Example :
+
+#!.bin/bash
+
+echo "Hello $1 $2"
+
+Example arges 2 :
+
+#!/bin/bash
+
+echo "\$* gives $*"
+echo "\$@ gives $@"
+echo "\$# gives $#"
+echo "\$0 gives $0"
+for i in "$*"
+do 
+   echo $i
+done
+for j in "$@"
+do 
+   echo $j
+done
+exit 0
+
+Pattern matching: (substitution operator or string operator )
+=============================================================
+
+Ex:
+
+DATE=
+echo ${DATE:-today}
+echo ${DATE:=today}
+echo ${DATE:?message}
+
+DATE=$(date +%d-%m-%y)
+echo date is ${DATE:0:2}
+
+Reggular Expressions :
+======================
+-> grep, awk,sed etc are used for search patterns
+
+
+Variables :
+===========
+
+we can declare variables using lowercase letters with underscore between words. EX: mission_name= lunar-mission
+
+to access mission_name variable, echo $mission_name
+
+Environment Variables:
+======================
+
+which are predefined variables in the shell. which uses all capital letters. EX: $PATH, $USER
+
+Command line arguments :
+========================
+
+-> design our script to be reusable
+-> script should not required to be edited before running
+-> use command line arguments to pass inputs
+
+Read Inputs : 
+==============
+ read -p "enter the mission name: " mission_name
+
+Arithmatic operations in shell scripting :
+==========================================
+
+-> using expr command : expr 6 + 3, expr 6 \* 3
+-> using double parenthsis : echo $((A+B)), echo $(( ++A ))
+                             echo $((A/B)) | bc -l  ---> for to get exact result in float point representation
+
+Flow control :
+==============
+
+conditional logic :
+--------------------
+
+simple-if:
+-----------
+if [ somecondition ]
+then
+    statement
+fi
+
+if-else:
+--------
+if [ somecondition ]
+then 
+     statement 1
+elif [ some condition ]
+     statement 2
+else
+    statement 3
+fi
+
+==> condition should be enclosed in square brackets '[]'
+==> for strings only we should use '=' or '!=' operators
+==> for other types, we can use '-eq, -ne, -lt, -gt'
+==> example : if [ "abc" = "abc" ]
+              if [ 5 -gt 3 ] 
+==> in bash scripting., we can also use '[[ ... ]]' for to write conditions
+==> examples in pattern management : [[ "abcd" = *bc* ]]  --> abcd contains bc
+                                     [[ "abc" = ab[cd] ]] --> third character may be c or d 
+==> conditional operators : [ cond1 ] && [ cond2 ] or [[ cond1 && cond2 ]]
+                            [ cond1 ] || [ cond2 ] or [[ cond1 || cond2 ]]
+==> file level operators : [ -e FILE ] --> if file exists
+                           [ -d FILE ] --> if file exists and it is dir
+                           [ -s FILE ] --> if file exists and size greter than 0
+                           [ -x FILE ] --> if file exists and it is executable
+                           [ -w FILE ] --> if file exists and it is writable
+*** example to check month number with month name : 
+================================================
+
+month_number=$1
+
+if [ -z $month_number ]
+then
+  echo "No month number given. Please enter a month number as a command line argument."
+  echo "eg: ./print-month-number 5"
+  exit
+fi
+
+if [[ $month_number -lt 1 ]] || [[ $month_number -gt 12 ]]
+then
+  echo "Invalid month number given. Please enter a valid number - 1 to 12."
+  exit
+fi
+
+if [ $month_number -eq 1 ]
+then
+  echo "January"
+elif [ $month_number -eq 2 ]
+then
+  echo "February"
+elif [ $month_number -eq 3 ]
+then
+  echo "March"
+elif [ $month_number -eq 4 ]
+then
+  echo "April"
+elif [ $month_number -eq 5 ]
+then
+  echo "May"
+elif [ $month_number -eq 6 ]
+then
+  echo "June"
+elif [ $month_number -eq 7 ]
+then
+  echo "July"
+elif [ $month_number -eq 8 ]
+then
+  echo "August"
+elif [ $month_number -eq 9 ]
+then
+  echo "September"
+elif [ $month_number -eq 10 ]
+then
+  echo "October"
+elif [ $month_number -eq 11 ]
+then
+  echo "November"
+elif [ $month_number -eq 12 ]
+then
+  echo December
+fi
+
+
+LOOPS :
+=======
+
+for:
+----
+syntax:
+
+for mission in <--list of missions-->
+do
+   command $mission
+done
+
+or
+
+for mission in `cat mission-names.txt` --> $(cat mission-names.txt)
+do
+   command $mission
+done
+
+or
+
+for (( mission = 0 ; mision <= 100 ; mission++ ))
+do
+   command $mission
+done
+
+==> execute a set commands multiple times
+==> Iterate through files
+==> Iterate through lines within a file
+==> Iterate through the output of a command
+
+Example1 :
+
+for file in $(ls)
+do
+   echo "Line count of $file is $(cat $file | wc -l )
+done
+
+Example2:
+
+for server in $(cat servers.txt)
+do
+   ssh $server "uptime"
+done
+
+Example3:
+
+for package in $(install-packages.txt)
+do 
+   sudo apt-get -y install $package
+done
+
+Example4: Shell script to rename the images
+
+for file in $(ls images)
+do
+        if [[ $file = *.jpeg ]]
+                then
+                new_name=$(echo $file| sed 's/jpeg/jpg/g')
+                mv images/$file images/$new_name
+        fi
+done
+
+while loop :
+============
+
+==> Execute a command or a set of commands multiple times but we are not sure how many times.
+==> Execute a command or a set of commands until a specific condition occurs
+==> Create infine loops
+==> Menu driven programs
+
+Real time example 1:
+--------------
+
+while true
+do
+  echo "1. Shutdown"
+  echo "2. Restart"
+  echo "3. Exit Menu"
+  read -p "Enter your choice: " choice
+  
+  if [ $choice -eq 1 ]
+  then
+      shutdown now
+  elif [ $choice -eq 2 ]
+  then
+      shutdown -r now
+  elif [ $choice -eq 3 ]
+  then
+    break
+  else
+    continue
+  fi 
+done
+
+Example 2:
+----------
+
+while true
+do
+  echo "1. Add"
+  echo "2. Subtract"
+  echo "3. Multiply"
+  echo "4. Divide"
+  echo "5. Quit"
+
+  read -p "Enter your choice: " choice
+
+  if [ $choice -eq 1 ]
+  then
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 + $number2 ))
+  elif [ $choice -eq 2 ]
+  then
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 - $number2 ))
+  elif [ $choice -eq 3 ]
+  then
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 * $number2 ))
+  elif [ $choice -eq 4 ]
+  then
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 / $number2 ))
+  elif [ $choice -eq 5 ]
+  then
+    break
+  fi
+
+done
+
+case statement :
+================
+
+Example:
+--------
+
+while true
+do
+  echo "1. Shutdown"
+  echo "2. Restart"
+  echo "3. Exit Menu"
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1) shutdown now
+       ;;
+    2) shutdown -r now
+       ;;
+    3) break
+       ;;
+    4) continue
+       ;;
+  esac
+done
+
+example 2:
+----------
+while true
+do
+  echo "1. Add"
+  echo "2. Subtract"
+  echo "3. Multiply"
+  echo "4. Divide"
+  echo "5. Quit"
+
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1)
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 + $number2 ))
+        ;;
+    2)
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 - $number2 ))
+        ;;
+
+    3)
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 * $number2 ))
+        ;;
+    4)
+        read -p "Enter Number1: " number1
+        read -p "Enter Number2: " number2
+        echo Answer=$(( $number1 / $number2 ))
+        ;;
+    5)
+        break
+        ;;
+  esac
+
+done
+
+Shebang :
+=========
+
+For the best practice, It is good to use shebang ( #!/bin/bash ) before our script
+
+Exit codes :
+============
+
+Exit code = 0 --> Sucess
+Exit code > 0 --> Failure
+
+==> to see exit code : echo $?
+==> It is best practice to use exit codes in our scripts.
+
+Functions : 
+===========
+
+Function defination :
+
+function function_name() {
+.
+.
+.
+}
+
+Function calling :
+
+function_name <--args if any-->
+
+==> We use return statement in function instead of exit statement
+
+use cases:
+----------
+
+-> Break up large script that performs many tasks
+-> Installing packages
+-> Adding Users
+-> Configuring firewalls
+-> Perform mathematical calculations
+
+Example 1 :
+---------
+
+function addition(){
+   echo $(( $1 + $2 ))
+}
+
+sum=$(addition 3 6)
+
+Example 2 :
+-----------
+
+function addition(){
+   return $(( $1 + $2 ))
+}
+
+addition 3 6
+sum=$?
+
+Example 3 :
+-----------
+
+#!/bin/bash
+function read_numbers(){
+  read -p "Enter Number1: " number1
+  read -p "Enter Number2: " number2
+}
+
+while true
+do
+  echo "1. Add"
+  echo "2. Subtract"
+  echo "3. Multiply"
+  echo "4. Divide"
+  echo "5. Quit"
+
+  read -p "Enter your choice: " choice
+
+  case $choice in
+    1)  read_numbers
+        echo $(( $number1 + $number2 )) ;;
+    2)
+        read_numbers
+        echo $(( $number1 - $number2 )) ;;
+
+    3)
+        read_numbers
+        echo $(( $number1 * $number2 )) ;;
+
+    4)
+        read_numbers
+        echo $(( $number1 / $number2 )) ;;
+
+    5)  break
+  esac
+
+done
+
+Tips and tricks :
+=================
+
+1. install shellcheck utility through yum or apt-get (yum install -y shellcheck)
+2. IDE's : IntelliJIdea, VSCode, Pycharm, Atom, Shell style guide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
