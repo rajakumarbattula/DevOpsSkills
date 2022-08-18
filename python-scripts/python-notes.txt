@@ -1,0 +1,571 @@
+python : von guido rossum  ->
+
+class HelloWorld{
+	pubic static void main(String args[]){
+		int a=10;
+		int b=20;
+		int c=a+b;
+		System.out.println("sum is : " c);
+	}
+}
+
+a,b=10,20
+print("sum is : " (a+b))
+
+1. simple and easy to learn
+2. case sensitive
+3. freeware and opensource  --> Jython (python and java)
+4. high level
+5. platform independent or architectural nuetral or portable
+6. dynamically typed language
+7. oops language
+8. interpreted language --> shell scripting, groovy scripting
+9. robust --> extensible libraries
+10. embedded
+
+=========================================
+
+pycharm, intellijidea, vistudio, atom  --> IDE's 
+
+==============================================
+Identifiers : class, object, function
+
+naming convensions : a-z, A-Z, 0-9 and _
+
+_name  --> private identifier
+__name ---> strongly private identifier
+__name__  --> language specific identifier
+=====================================================
+Reserved words in python : 33
+if else elif for while True False None and or not is break continue, case, return, try, except, in, yield, finally, raise, assert
+import from as class def pass global nonlocal lambda del with
+====================================================================
+Data types : python is dynamically typed language. no need to define data type explicitly
+
+implicit data types : 14
+=========================
+int float complex bool str bytes bytearray range list tuple set frozenset dict None
+====================================================================================
+
+int : integer values, default numbering system is decimal numbering system
+float : fractional numbers
+complex : stores both real and imaginary values. eg: 2+3j
+bool : True, False
+str : > no char type
+      >  using '', ""
+	  > multiline strings are defined by ''' ''', """ """
+	  > using slice operator, we can perform string operations easily
+	  > string-name[begin:end:step]
+type concersion: type casting  or type coersion (convert one type to another type )
+=====================================================================================
+defacult type conversion functions in python are : int(), float(), complex(), str() and bool()
+> int(), float() : convert from any type to int,float except complex
+> complex() : convert from any type to complex except string
+> bool() : convert any type to boolean including complex
+String formatting : 
+===================
+> using repition operator '{}'
+
+
+bytes and bytearray datatype : range is 0 to 255, used for to process image or video file in DIP applications
+===============================
+> bytes is immutable
+> bytearray is mutable
+ex : x=[10,20,30]
+	 y=bytes[x]
+	 b[0]=100 --> not allowed to insert
+	 z=byetarray[x]
+	 b[0]=100 --> allowed to insert
+
+***list data type :
+===================
+To represent group of objects as a single entity, where insertion order required to preserve and duplicates are allowed
+> list defination, l=[]
+> scalable / growable
+> mutable
+> insertion order is preserved
+> duplicates are allowed
+> slicing is possible
+> both homogeneous and heterogenious objects are allowed
+> ex : l=[1,2.3,"Ram"]
+
+tuple : similar to list except immutability
+============================================
+> tuple defination : t=()
+> read only version of list
+> slicing is possible
+> not scalable
+> ex : t=(10,20,30)
+
+set : 
+=====
+> set defination, *** s=set() / s={} --> not allowed ***
+> elements are enclosed in {}
+> group of objects as a single entity
+> duplicates are not allowed
+> insertion order is not preserved
+> slicing is not possible
+> Scalable
+> Mutable
+> both homogeneous and heterogenious objects are allowed
+> ex : s={10,20,30}
+
+frozenset : similar to set except immutability
+==============================================
+> ex: s={10,20,30}
+	  fs=frozenset(s)
+	  fs.add(40) --> not applicable for frozenset
+
+*** dictionary : used to store key and value pairs
+===================================================
+> Mutable
+> order is not preserved
+> no slicing feature
+> dict defination, d={}
+> ex : d={ 1: 'apple', 2: 'orange'}
+
+range() :
+=========
+> elements in range type is immutable
+> slicing is allowed
+> ex : r=range(10)
+       print(type(r))
+> ex:   r=range(10)
+		for i in r[2:8]:
+			print(i)
+> ex: for i in range(0,101,5):
+		print(i)
+		
+None : No datatype, not pointing to any object
+==============================================
+> ex : def m1():
+		  a=10
+		  print("Hello")
+	   f1()
+	   print(f1())
+	   
+Escape characters :
+===================
+\n, \t, \r, \b, \f --> formfeed, \v --> vertical tab
+\' -> single quote
+\" -> double quote
+\\ -> back slash
+ex : s= 'the book \'python\' is very easy'
+
+constants :
+===========
+> recommended to define constants using uppercase letters
+> ex : MAX_VALUE=10
+
+Operators :
+===========
+> arthmatic, relational or comparision, logical, bitwise, assignement operators, special operators
+
+arithmatic operators : +,-,*,/,%,//,**   
++ -> addition and concatanation
+* -> multiplication and repetition
+x/0,x//0,x%0 -> zero division error
+
+relational operators : >, >=, <, <=
+
+Equality operators : ==, !=
+*** == is compares content
+*** 'is' operator compares reference id
+
+*** difference between '==' and 'is' operator ***
+
+Logical operators : and, or, not
+and : if x is False then returns x otherwise it returns y (True)
+
+or : if x is True then it returns True otherwise returns y (False) 
+
+not : complement operation
+
+Bitwise operators : &,|,^,~ (perform actions on only int and boolean values)
+
+Shift operators : <<,>>,>>>
+
+Assignement operators : +=,-=,*=,/=,%=, //=, **= (compound assignement operarors)
+&=,|=,^=,>>=,<<=
+
+Special operators :
+***1. identity operators : is, is not
+ ex : l1=["One","Two","Three"]
+	  l2=["One","Two","Three"]
+	  print(l1 is l2)
+	  print(l1 == l2)
+	  print(l1 is not l2)
+
+2. Membership operators : in, not in
+ex ;
+str1="leanring python is easy"
+print('z' in str1)
+print('easy' in str1)
+print('d' not in str1)
+
+***3. Ternary operator : reduces code
+syntax : x=a if condition else b
+
+
+ex : x=4 if 10>20 else 5
+
+***WAP to read 2 numbers from the key board and print minimum value :
+
+a=int(input("Enter 1st number : "))
+b=int(input("Enter 1st number : "))
+if a<b:		| min=a if a<b else b	| print(a if a<b else b)	
+  print(a)	| print(min)			|
+else 		|						|
+  print(b)	|						|
+*** Nested of ternary operator is possible :
+ex : 
+a,b,c=10,20,30
+x=a if a<b and a<c else b if b<c else c
+ex :
+a=int(input("Enter 1st number : "))
+b=int(input("Enter 1st number : "))
+print("a is greter than b" if a>b else "a is lessthan b" if a<b else "both are equal")
+
+Operator precedence : priority operation 
+1 -> ()
+2 -> **
+3 -> ~,- (unary minus)
+4 -> *,/,%,//
+5 -> +,-
+6 -> <<,>>,&,^,|,>,<,>=,<=,==,!=
+7 -> =, +=, -=
+8 -> is, is not, in, not in, not, and , or
+ex : print((a+b)*c/d)
+
+module : it is a group of vars,functions,classes
+===================================================
+
+group of modules -> packages
+group of packages -> library
+
+www.python.org
+
+***math module : performs mathematical operations
+
+> using import keyword we can use math module
+ex : 
+import math
+print(math.sqrt(4))
+print(math.pi)
+> we can create alias for any module
+ex:
+import math as m
+print(m.sqrt(4))
+print(m.pi)
+> use specific functions from madule
+ex:
+from math import * | sqrt,pi
+print(sqrt(4))
+print(pi)
+> we can create aliases for methods in modules
+ex:
+from math import sqrt as a, pi as b
+print(a(4))
+print(b)
+
+important functions in math module :
+
+sqrt(), ceil(), floor(), pow(), factorial(), trunc(), gcd(), sin(), cos(), tan(), ...
+
+*** WAp to read radius of circle from the keyboard and print its area :
+
+from math import pi
+r=int(input("enter radius: "))
+print("area is : ", pi*r**2)
+
+Input and Output statements :
+=============================
+
+** How to read input dynamically from the keyboard
+for python2, 1. raw-input() and 2. input()
+** It reads only string type.
+** Typecasting is required while reading input from keyboard.
+for python 3, only input() is available
+Ex:
+name=input('Enter name : ')
+mobile=int(input('Enter your mobile number : '))
+height=float(input("Enter your height : '))
+martialstatus=eval(input('Enter martial status [True/False] : '))
+print('You entered : ', name)
+print('Your mobile number is : ', mobile)
+print('Your height in feets and inches : ', height)
+print('Your martial status is : ',martialstatus)
+
+***How to read multiple values from keyboard in a single line : (List comprehension)***
+----------------------------------------------------------------------------------------
+print(input("Enter 2 numbers : "))  ---> "10 20" string type
+print(input("Enter 2 numbers : ").split()) --> [ '10','20'] --> list of strings
+print([int(x) for x in input("Enter 2 numbers : ").split()]) -->  list of integers
+
+Ex: Add two numbers from keyboard
+a,b=[int(x) for x in input("Enter 2 numbers : ").split(',')]
+print('Sum is : ',a+b)
+
+*** eval() : converts string to corresponding datatype
+======================================================
+
+ex:
+x=eval("10+20+30")
+print(x)
+ex:
+x=eval(input("Enter any expression : "))   --> 10+20*30/4 or Raja*3
+print(x)
+
+*** command line arguments :
+============================
+
+-> We can use 'argv' to use commandline arguments
+-> argv -> is list type will be avaialble in 'sys' module
+ex:
+from sys import argv
+print(type(argv))
+print("no.of commandline arguments: ", len(argv))
+print("The list of commandline arguments: ",argv)
+print("commandline arguments one by one: ")
+for i in argv:
+  print(i)
+  
+Run : py test.py 10 20 30
+-------------------------
+
+ex:
+from sys import argv
+sum=0
+args=argv[1:]
+for i in args:
+  n=int(i)
+  sum=sum+i
+print("The sum is : ",sum)
+
+ex:
+from sys import argv
+args=argv[1]
+print(args)
+print(argv[1]+argv[2])  # test with string args
+print(2*argv[1])
+print(int(argv[1])+int(argv[2]))  # test with int args
+print(argv[100])  # will get index out of range error
+
+output statements :
+===================
+print() :
+--------
+> normal blank print method is print()
+> we can use escape characters (\n,\t ...)
+> we can  use +(concatanation) and *(repetition) operators
+> We can pass with variable no.of args :
+	ex: a,b,c,d=10,2,3,4
+	    print("The result is : ", a,b,c,d)
+		print("The result is : ", a,b,c,d,sep=',')  -> using sep attribute
+		print("The result is : ", a,b,c,d,sep=':')
+		print(a, end='   ') -> using end attribute, useful while creating puzzles
+		print(b, end='  ')
+		print(c, end=' ')
+		print(d)
+> We can used print objects : l=[10,20]
+							  print(l)
+> We can print string and variable list :
+	str1="Raja"
+	age=29
+	print("Hello, ", str1, "Your age is ",age)
+> We can use with formatted string : (%i,%d -> int %f -> float %s -> string )
+a,b,c=10,20,30
+print("a value is %d", %a)
+print("b value is %d and c value is %d", %(b,c))
+> We can use replacement operator :
+ex:
+name='Raja'
+salary=50
+country='India'
+print("Hello {} your salary is {} you are from {}".format(name,salary,country))
+print("Hello {0} your salary is {1} you are from {2}".format(name,salary,country))
+print("Hello {a} your salary is {b} you are from {c}".format(a=name,b=salary,c=country))
+
+flow control :
+==============
+Selection statements : if, if-else, if-elif-else
+Iterative statements : for, while
+Transfer statements : break, continue, pass and return
+Note : no switch and dowhile
+
+Selection statements :
+-----------------------
+if :
+	if <condition>:
+		statements
+if-else :
+	if <condition>:
+		statements
+	else
+	    default statements
+if-elif-else : replacement of switch
+	if <condition>:
+		statements
+	elif <condition>
+		statements
+	elif <condition>
+		statements
+		.
+		.
+		.
+	else
+	    default statements
+
+Ex :
+book=input('Enter your favourite book : ')
+if book=='python':
+	print("Your favourite book is %s",%book)
+elif book=='java':
+	print("Your favourite book is %s",%book)
+else
+	print("Your favourite book is DevOps")
+	
+Ex: Largest num of three numbers
+
+n1=int(input("enter first number : ")
+n2=int(input("enter second number : ")
+n3=int(input("enter third number : ")
+if n1>n2 and n1>n3:
+	print(n1,"is greter than",n2,"and",n3)
+elif n2>n3:
+	print(n2,"is greter than",n1,"and",n3)
+else
+	print(n3,"is greter than",n1,"and",n2)
+	
+using list comprehension and ternary operator :
+-----------------------------------------------
+
+n1,n2,n3=[int(x) for x in input("Enter three numbers : ").split()]
+print(n1 if n1>n2 and n1>n3 else n2 if n2>n3 else n3)
+
+Ex: to read single digit number from the keyboard and print its value in english words
+
+n=int(input("Enter any number between 0 to 9 : ")
+if n==0:
+	print("Zero")
+elif n==1:
+	print("One")
+	.
+	.
+	.
+else 
+	print("Enter numbers between 0 to 9 only")
+
+Iterative statements : for and while loops
+==========================================
+
+for loop :
+----------
+for i in <iterable item> or <string>:
+	statements
+	
+Ex:
+for i in [10,20,30]
+	print(i)
+	
+for i in "This is python programming language":
+	print(i)
+	
+Ex:
+
+s=input("Enter any string : ")
+i=0
+for x in s:
+	print("The character at {} index is : {}".format(i,x))
+	i+=1
+
+Ex:
+
+for x in range(10):
+	print(x)
+	
+# asending order
+for x in range(1,11):
+	print(x)
+	
+# odd numbers	
+for x in range(1,11,2):
+	print(x)
+	
+# even numbers	
+for x in range(0,11,2):
+	print(x)
+	
+# decending order`	
+for x in range(1,11,-1):
+	print(x)
+
+# add list of numbers from the keyboard
+list=eval(input("Enter any list of numbers : "))
+sum=0
+for i in list:
+	sum=sum+i
+print("Sum of given list of numbers are {}".format(sum))
+	
+
+
+
+
+
+
+
+
+
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	   
