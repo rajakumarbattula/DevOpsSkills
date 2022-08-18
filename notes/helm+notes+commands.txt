@@ -1,0 +1,121 @@
+helm repo list
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm repo list
+
+helm repo remove bitnami
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+
+Search the repository:
+
+helm search repo mysql
+
+helm search repo database
+
+helm search repo database --versions
+
+
+Install a package:
+
+kubectl get pods
+
+(Below Two commands - In a Different Shell/Commandline window/tab)
+
+minikube ssh
+
+docker images
+
+helm install mydb bitnami/mysql
+
+Check the cluster:
+
+kubectl get pods
+
+minikube ssh
+
+docker images
+
+To check the installation status:
+
+helm status mydb
+
+
+
+--------------------------------------------
+
+To Upgrade:
+
+ROOT_PASSWORD=$(kubectl get secret --namespace default mydb-mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode)
+
+helm upgrade --namespace default mysql-release bitnami/mysql --set auth.rootPassword=$ROOT_PASSWORD
+
+-------
+
+helm uninstall mysql-release
+
+----------------
+
+adv commands :
+===============
+
+helm install mydb bitnami/mysql --set auth.rootPassword=root1234
+
+helm install mydb bitnami/mysql --values /root/values.yaml --dry-run
+
+helm template mydb bitnami/mysql --values /root/values.yaml
+
+helm upgrade mydb bitnami/mysql --values /root/values.yaml
+
+kubectl get secrets
+
+kubectl get secrets <secret-name> -o yaml
+
+helm ls / helm list
+
+helm get notes mydb
+
+helm get values mydb
+
+helm get values mydb --all
+
+helm get values mydb --revision 1 
+
+helm get manifest mydb
+
+helm get manifest mydb --revision 1
+
+helm history mydb
+
+helm rollback mywebsrv 1
+
+helm uninstall mywebsrv --keep-history
+
+helm rollback mywebsrv 3
+
+helm install mywebsrv bitnami/apache --namespace myns --create-namespace
+
+helm upgrade --install mywebsrv bitnami/apache 
+
+
+
+helm install bitnami/apache --generate-name
+
+helm install bitnami/apache --generate-name --name-template "mywebserver-{{randAlpha 7 | lower}}"
+
+helm install mywebsrv bitnami/apache --wait --timeout 10m20s
+
+helm install mywebsrv bitnami/apache --atomic --timeout 7m12s
+
+helm upgrade mywebsrv bitnami/apache --force
+
+helm upgrade mywebsrv bitnami/apache --cleanup-on-failure
+
+to create own chart : helm create firstchart
+to install the chart : helm install firstapp firstchart
+to package a chart : helm package firstchart   or   helm package firstchart --dependencies-update (or -u)   or helm package firstchart --destination (or -d) <--path-->
+
+to lint the chart (avoid indentation problems) : helm lint firstchart
+

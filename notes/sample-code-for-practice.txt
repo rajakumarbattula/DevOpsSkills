@@ -1,0 +1,48 @@
+FROM centos
+MAINTAINER <--name,mailid-->
+RUN mkdir /opt/tomcat
+WORKDIR /opt/tomcat
+RUN curl -O <--tomcat url-->
+RUN tar -xvzf apache*.tar.gz
+RUN mv ./tomcat/* /opt/tomcat/.
+RUN yum install -y java
+RUN java --version
+WORKDIR /opt/tomcat/webapps
+RUN curl -O -L <--github url(.war)-->
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/catalina.sh","run"]
+
+#!/bin/bash
+src="/home/user1/myfile"
+dest="/home/user1/backup"
+filename=myfile-$(date +%-Y%-m%-d)-$(date +%-T).tgz
+tar -czf $dest$filename $src
+
+#!/bin/bash
+case $#
+1) ;;
+*) echo 'usage: watchfor username' ; exit 1
+esac
+until who | grep -s "$1" > /dev/null
+do
+  sleep 5
+done
+echo "$1 has logged in"
+
+#!/bin/bash
+servers=$(cat servers.txt)
+echo -n " Enter the username : "
+read name
+echo -n " Enter the userid : "
+read userid
+for i in $servers
+do
+   echo $i
+   ssh $i "sudo useradd -m -u $userid ansible"
+   if [ $? -eq 0 ]
+   then
+      echo "User $name added on $i"
+   else
+      echo "Error on $i"
+   fi
+done

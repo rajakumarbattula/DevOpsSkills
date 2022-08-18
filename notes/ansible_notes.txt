@@ -1,0 +1,154 @@
+Ansible configuration :
+=======================
+
+1. create user name across ass servers and provide some password(useradd, passwd)
+2. Provide root privileges to all users on all servers (visudo)
+3. make PasswordAuthentication yes in all servers under /etc/ssh/sshd_config file (created password less authentication)
+4. (ansible server)generate ssh-key using ssh-keygen from created user
+5. copy ssh pub key using ssh-copy-id <hostname> from /home/user/.ssh/
+6. connect to remote machine using ssh user@hostname
+7. execute ansible all -m ping
+
+Ansible Directory structure :
+=============================
+
+1. ansible --version
+2. cd /etc/ansible (default location)
+3. tree
+    ansible.cfg, hosts,roles(d)
+4. hosts file is inventory file where are servers's ip's are mensioned.
+5. if file name is created with other name and other location, then it should be configure its path in ansible.cfg file as vi /etc/ansible/ansible.cfg
+
+How to disable host key checking ?
+==================================
+
+1. export ANSIIBLE_HOST_KEY=False (temp way)
+2. in ansible.cfg, write host_key_checking = False
+
+Inventory file with group(s) :
+============================
+
+1. Inventory file consists of IP'S of list of remote servers which will be communicated by ansible engine.
+2. we can mention remote servers in the form of groups. By using group names, We can ping remote servers with the name of group(S)
+
+Different locations for ansible.cfg file:
+==========================================
+
+1. default location : /etc/ansible ( least priority )
+2. Locations with priority
+     i. ANSIBLE_CONFIG environment variable
+     ii. ./ansible.cfg from the current directory
+     iii. ~/.ansible.cfg file present in the home directory
+     iv. /etc/ansible/ansible.cfg (default)
+
+Ansible Architecture :
+======================
+
+1. Ansible server(engine)
+2. managed nodes (n)
+3. connection using SSH
+4. using passwordless authentication we can make ssh connection
+5. managed ip's are mensioned in inventory file (default inv : hosts)
+6. host_key_checking False (we can make it)
+7. ansible.cfg (settings)
+8. Ansible modules (predefined programs)
+
+Installation in RHEL8 :
+======================
+
+using pip we can install ansible. but there will not be ansible default directory structure at /etc/ansible
+
+Introduction to ansible ad-hoc commands :
+=========================================
+
+1. ad-hoc commands are used to execute single ansible task at a time.
+2. ansible all -m ping
+3. ansible all -m shell -a "uptime"  --> to know uptime
+4. ansible all -m shell -a "free -m" --> to know RAM usage
+5. ansible -i some_inv_file all -m shell -a "uptime"
+6. ansible ad-hoc command syntax : ansible [-i inv_file] all/group -m module [-a argument_value]
+7. ansible-doc -l   --> lists all ansible modules (as of now, we have around 4800 modules) ex: ansible-doc shell (provides info about given module)
+
+How Ansible works ? (Executing ad-hoc commands or play books ) :
+=================================================================
+
+1. push based mechanism( pushes into given remote machines at /home/ansadmin/.ansible/tmp)
+2. ANSIBLE_KEEP_REMOTE_FILES=1 ansible all -m shell -a "uptime"  --> try it
+3. for parallel execution of 2(n) nodes we have to write fork = 2(n) in ansible.cfg file
+4. agentless architecture
+
+Transfer files using copy module :
+===================================
+
+commands : copy module
+
+1. ansible dev -m copy -a "content='Hello, This is from ansible copy module,This is second file\n' dest=/tmp/Hello.txt backup=yes"
+2. ansible all -m copy -a "src=./inv dest=/tmp"
+3. ansible dev -m copy -a "content='Hello, This is from ansible copy module' dest=/tmp/Hello.txt"
+4. ansible dev -m copy -a "content='Hello, This is from ansible copy module\n' dest=/home/ansadmin/hello.conf backup=yes"
+
+Download a file from nodes using Ansible Ad-hoc command :
+==========================================================
+
+ fetch module : 
+
+1. ansible all -m fetch -a "src=/home/ansadmin/demo.txt dest=./demo/"
+2. ansible all -m fetch -a "src=/home/ansadmin/demo.txt dest=./newdemo/ flat=yes"
+3. ansible all -m fetch -a "src=/home/ansadmin/Demo.txt dest=./newdemo/{{inventory_hostname}}_demo.txt flat=yes"
+
+Create/delete a file or directory using Ansible ad-hoc command :
+=================================================================
+
+file module:
+
+for to create :
+
+1. ansible all -m file -a "path=/tmp/hellodemo.txt state=touch"
+2. ansible all -m file -a "path=/tmp/hellodemo.txt state=touch mode='0777'"
+
+for to remove :
+
+1. ansible all -m file -a "path=/tmp/hellodemo.txt state=absent"
+
+create a directory :
+
+1. ansible all -m file -a "path=/tmp/hellodemo.txt state=directory"
+
+to create a file under the root location :
+
+1. ansible all -m file -a "path=/etc/hellodemo.txt state=touch" -b [or --become] ==> providing root priveledges using [-b or --become] option
+
+for help :
+
+ansible -h [or --help]
+
+Different modules to work with files ansible ad-hoc command :
+=============================================================
+
+ go through ansible docs : files modules
+
+Install package like git, httpd, mysql, git on Linux systems using yum module :
+===============================================================================
+
+for rhel/centos : yum
+for ubuntu/debian : apt
+
+1. ansible all -m yum -a "name=git/httpd/mysql state=present" -b
+2. ansible dev -m yum -a "name=git state=latest" -b
+3. ansible all -m yum -a "name=git state=absent"
+
+command module :
+================
+
+***shell and command modules of ansible are used to execute linux shell commands. The default module is command module if we execute shell command without using shell or command module name***
+
+1. ansible all -m shell -a "uptime"
+2. ansible all -m command -a "uptime"
+3. ansible all -a "uptime"
+
+***command module does't include some system variables such as $HOME ans stream operators <, >, | and & will not work
+***command module does't affects system  performance (safer to use)
+
+
+
+

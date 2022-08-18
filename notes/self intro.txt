@@ -1,0 +1,34 @@
+1. 5 years of Overall IT, Almost 4 years of exp in DevOps
+2. Throughout my IT exp, I involved in 4 projects
+3. My latest project is Veritas Netbackup automation
+    --> worked with TC automation team (8 stages)
+--> My major role is to setting up NBU master, media and client environment on different VM's like WIN, RHEL7
+--> Setting up Microsoft exchange server, NBU Opcenter
+--> Deploying configuration on different VM's using Ansible playbooks
+--> After Automation team commit the robot files in bit bucket. I will trigger jenkins pipeline which executes TC in desired VM.
+4. UHG-Optum:
+    --> Datahub migration to cloud : migrating onpreses to AWS cloud using native AWS services[Stepfunctions, lambda functions, SNS, S3, DynamoDB, CloudWatch, IAM, EC2, VPC].
+    --> Apart from that, We used different tools [scm: GIT, GITHUB / CI: Jenkins / IAAC : Terraform /
+   CodeQuality: SonarQube, Fortify / Build: Maven, Graddle / core python / Ticketing tool : Rally ]
+Roles:
+--> build MasterSpec Stepfunction (6 components)
+--> forming inputs for all components using aws lambda functions, S3, SNS, CloudWatch and IAM.
+--> auditing dynamo data using Dynamo streams, Audit lambda function, cloudwatch logs, python deepdiff package
+--> Building SCALA based application using gradle
+--> DEV, NON-PROD, PROD
+--> Jenkins pipeline deploy the aws environment in NON-PROD and PROD environment using terraform
+ 5. COMCAST:
+    --> Telecommunication domain
+--> Environment : RHEL7
+--> Setting up devops environment in aws cloud as per my architech plan.
+--> scm: git, github / CI: Jenkins / IAAC: Terraform / Containerization : Docker / CM : Ansible / Build: Maven / Ticketing tool: Jeera / Cloud : AWS / Artifactory repo : Jfrog
+   CodeQuality: SonarQube / AWS: EC2, VPC, SG, LB, S3, Autoscaling, EBS (Volumes and snapshots), NAT Gateway, IGW , IAM, CloudWatch etc.
+6. AIG:
+   --> Insurance services
+   --> Environment: RHEL7
+   --> SCM : SVN, CI: Jenkins, CM: Ansible, Containerization: Docker, Linux-shell scripting, Build: Maven
+   
+   UST Global (01/2017 to 04/2021)   14th floor, tower B, Prestige shanthinikethan complex road, Thigalarapalya, whitefield                                
+   
+   through Zenstar computer solutions pvt ltd.(4th and 5th floor buisiness square, madhapoor (opposite to hitech city junction)
+   

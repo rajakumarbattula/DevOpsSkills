@@ -1,0 +1,7 @@
+DEVOPS PROJECT :
+
+1. Jenkins installation
+2. git installation and integration
+3. maven installation and integration
+4. create maven job->clean build package-> build
+   ( we will get artifacts under /var/lib/jenkins/workspace/projectname/target--> projectname.war )

@@ -1,0 +1,194 @@
+
+
+The girl plays football.
+
+The girls play football.
+
+girl = singular subject plays = singular verb
+
+girls = plural subject  play = plural verb
+
+
+The laptop or the desktop  goes in the cupboard (go/goes)
+
+The laptops or the desktop _goes__ in the cupboard. 
+
+The laptop or the desktops _go__ in the cupboard.
+
+The laptops or the desktops _go__ in the cupboard. 
+
+Raju and Kiran _are__ available today. 
+
+The laptop and the desktop go in the cupboard.
+
+Neither Kiran nor I _am_ available today. 
+
+Neither I nor Kiran is available today. - XXXXX
+
+Each of these phones ___ damaged. (Is/Are)
+
+Each of these laptops needs to be allocated.
+
+Some of these laptops ___ damaged.
+
+All our servers, including the one you are using _are__ down. 
+
+He doesn't like coding.
+
+TENSES
+Present
+1. Simple - facts, habits, regular events (daily, every morning, usually, normally)
+Sub + verb + .......
+
+The leaveas are green.
+I work at Persistent Systems.
+I work out every day.
+I usually start my day at 7am.  
+I run a 10 kilometer marathon once a year. 
+I usually have my lunch at the cafeteria.
+
+2. Continuous - an activity that's happening as we speak 
+Sub + is verb ing + .......
+
+It is raining currently/just now/presently/right now
+She is currently working on a Salesforce project. 
+I am currently working with Persistent Systems. 
+The event is happening as we speak.
+Javed is currently watching the IPL.
+Madhvi is currently reading Harry Potter. 
+
+
+3. Perfect - recent past (just
+Sub + have/has verb (participle) + .....
+
+I have just sent you an email         do  did  have done   drink drank drunk 
+She has already done her work
+She hasn't done her work yet.
+I have just finished my client call.
+I have seen that movie before. /twice already/ a million times before!!
+Have you ever seen a ghost? I have never seen a ghost. No, I haven't seen a ghost.
+Have you had your lunch yet? I have had my lunch already, but thanks!  
+                             I have completed my tasks just now,
+
+I have had the pleasure of working with Mr. Deshpande.
+
+
+4. Perfect Continuous  
+
+Sub + have/has + been + doing + .......
+
+I have been working with Persistent for 8 years now/ since 2013.
+I have been talking since 10 am/ for 3 hours now
+It has been raining for 2 hours now/since 11 am.
+
+
+
+
+Past 
+
+Simple - regular past habits, an activity is over
+
+Sub + verb + ...... (yesterday, last week, last year, before, last decade, last life)
+
+I was with the Salesforce project from 2005 to 2010. 
+I completed my work before she did/ the deadline. 
+Until early 2020, I would go to office everyday.
+Last night, I dreamed about..../that I was flying.
+My uncle retired last year.
+The new CEO took over last year.
+I had my lunch at the cafeteria today. 
+
+Continuous - 
+
+It was raining the entire day. 
+She was working on the demo when I went to her desk. And I saw that she was crying. 
+She was having dinner when I last spoke to her. 
+
+
+Perfect - 
+Sub + had + manin verb (participle) + .....
+
+I had eaten an apple before I ate a mango. 
+I had worked on the Salesforce project before I moved to a BFSI project.
+I had just sent an email to the client when he called to request some changes. 
+
+Perfect Continuous
+
+Sub + had + been + verb ing + .....
+
+I had been driving for 3 hours when Swati called me. 
+I had been driving since 9am when Swati called me. 
+
+
+Future
+
+Simple - action about to happen
+
+Sub + will + verb + .....
+I will complete my work in th next 2 hours
+I will connect with you on Tuesday/Monday. at 5pm/ tomorrow.
+I shall send you the doc by EOD.
+My uncle will retire next year.
+
+
+Continuous
+
+Sub + will + be + verb ing +.....
+
+I will be reaching the office in 5 minutes. 
+I will be connecting with you on Monday. 
+I shall be sending you the doc by EOD.
+
+Perfect
+Sub + will + have + verb (participle) + ....
+
+I will have completed my work by the time you will reach home. S
+She will have reached Mumbai when you plan to call her. 
+I will have completed my graduation by the time my parents retire. 
+
+
+Perfect Continuous
+
+Sub + will + have + been + verb ing +.....
+
+I will have been travelling to Mumbai for 3 hours when you will call me. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
