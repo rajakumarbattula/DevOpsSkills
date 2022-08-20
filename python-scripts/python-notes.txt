@@ -465,7 +465,7 @@ for i in <iterable item> or <string>:
 	statements
 	
 Ex:
-for i in [10,20,30]
+for i in [10,20,30]:
 	print(i)
 	
 for i in "This is python programming language":
@@ -497,16 +497,399 @@ for x in range(0,11,2):
 	print(x)
 	
 # decending order`	
-for x in range(1,11,-1):
+for x in range(11,1,-1):
 	print(x)
 
 # add list of numbers from the keyboard
-list=eval(input("Enter any list of numbers : "))
+list=(input("Enter any list of numbers : ").split())
 sum=0
 for i in list:
-	sum=sum+i
+    x=int(i)
+    sum+=x
 print("Sum of given list of numbers are {}".format(sum))
+
+while loop :
+============
+while <condition>:  --> as long as condition is true, its body repetedly executes
+	<body>
 	
+Ex:
+x=1
+while x<=10:
+	print(x)
+	x+=1
+	
+Ex: Sum of first n numbers
+n=int("Enter any number : ")
+x=1
+sum=0
+while x<=n:    | while x in range(n+1)
+	sum+=x
+	x+=1
+print(sum)
+
+Ex: prompt user to enter some same until entering your name
+
+name=''
+while name!='Raja':
+	name=input('Enter name : ')
+print('Thank you for your confirmation')
+
+Ex: infinite loops
+
+i=0
+while True:
+	print("Hello; ",i)
+	i+=1
+	
+Nested loops :
+==============
+Ex:
+
+for i in range(4):
+	for j in range(4):
+		print("i={} and j={}".format(i,j))
+
+Ex:
+
+n=int(input("Enter the no.of rows: "))
+for i in range(n):
+	for j in range(n):
+		print('*',end='')
+		print()
+# using single for loop
+for i in range(n):
+	print('* '*n)
+	
+Ex:
+
+n=int(input("Enter the no.of rows: "))
+for i in range(1,n+1):
+	for j in range(n):
+		print(i,end=' ')
+	print()
+	
+Ex: right angle triangle pattern
+
+n=int(input("Enter the no.of rows: "))
+for i in range(1,n+1):
+	print('* '*i)
+
+Ex: equilateral triangle pattern
+
+n=int(input("Enter the no.of rows: "))
+for i in range(1,n+1):
+    print(' '*(n-i), end=' ')
+    print('* '*i)
+Transfer statements :
+=====================
+
+1. break : to break/stop execution in side the loop execution/iteration
+=======================================================================
+
+Ex: 
+for i in range(10):
+	if i==3:
+		print("Thank you")
+		break
+	print(i)
+print("end of loop")
+
+Ex:
+cart=[10,200,300,500,1000]
+for i in cart:
+	if i>300:
+		print("Thank you for shopping")
+		break
+	print("placed",i)
+	
+2. continue : To skip current iteration and to continue next iteration we use continue statement
+=============
+
+Ex:
+
+for i in range(10):
+	if i%2==0:
+		continue
+	print(i)
+	
+Ex:
+
+cart=[10,200,300,500,1000]
+for i in cart:
+	if i>300:
+		print("Thank you for shopping")
+		continue
+	print("placed",i)
+	
+Ex:
+
+num=[10,200,0,500,0]
+for i in num:
+	if i==0:
+		print("Avoid zero division error")
+		continue
+	print("100/{}={}".format(i,100/i))
+
+Ex: loops with else block
+
+# if for loop without break executed then else block will be executed
+cart=[10,20,30,40]
+for i in cart:
+	if i>300:
+		print("Thank you for shopping")
+		break
+	print("placed",i)
+else:
+    print("All items are placed successfully")
+	
+pass statement:
+==============
+> if we want pass empty task without error, we should use 'pass' statement
+
+Ex:
+if True: pass
+print('passed')
+
+class Student:
+    pass
+
+class Person:
+    def read():
+        pass
+
+class Teacher:
+    def read(self):
+        print('python'+'java')
+
+def m1(): pass
+
+for i in range(100):
+    if i%9==0:
+        print(i)
+    else: pass
+	
+del keyword:
+============
+
+> After using a variable. If that variable is no longer used, then we can destroy that variable using 'del' keyword
+
+Ex:
+
+x=10
+print(x)
+del x
+print(x)
+	
+*** difference between None and del : 
+
+None : s=None -> then s will not point to any object
+del: s='xyz'
+	 del s  -> then 's' variable and object will be deleted
+	
+*** String data type :
+======================
+> string objects are immutable
+> '', "", ''' ''', """ """
+> index
+> slicing
+> concatanation(+) and repetition (*)
+> membership operators (in, not in)
+> comparision operators (<,<=,>,>=,==,!=)
+> string formating using replacement operators ({}) with format() and using formatted string (%i or %d for int, %f for float, %s for string)
+> built-in functions : 
+	len() -> to get length of string
+	find() -> to check substring is avaialble or not. returns 1st occurance of string index of substring. returns -1 if substring is not avaialble
+		ex: s="learning python is easy"
+			print(s.find('python'))
+	rfind() -> searches 1st occurance of substring in reverse direction
+	find(substring,begin,end)  -> searches given substring in specified begin and end-1 index
+	index() -> same as find() except if substring is not available it returns "ValueError"
+	count(substring) and count(substring,begin,end) -> counting substrings in the given string
+	replace(oldstring,newstring) -> ***by creating new string objects we can replace old string with new string 
+	***split(delimeter) -> we can split string using delimeter (space, ',','/',':'...). converting from string to substrings. returns list type object
+		Ex: s='30/12/1981'
+			print(s.split('/')
+	***join() -> used to join group of substrings with a separator. Syntax : string=separator.join(group-of-substrings)
+		Ex: l=['30','December','1981']
+			print('/'.join(l))
+	upper() -> used to convert string in to uppercase letters
+	lower() -> used to convert string in to lowercase letters
+	swapcase() -> L->U and U->L
+	title() -> first letters are capital
+	capitalize() -> Only first letter is capital
+	startswith(substring) -> returns True if string is starts with substring
+	endswith(substring) -> returns True if string is ends with substring	
+	isalnum() -> returns True is alpha numeric character is found in the string
+	isalpha() -> returns True is alphabetic character is found in the string
+	isdigit() -> returns True is numeric character is found in the string
+	islower()  -> True if lower
+	isupper()  -> True if upper
+	istitle()  -> True if tiltle characters
+	isspace()  -> True if spaces
+
+Important programs for to perform string operations :
+=====================================================
+
+1. To reverse given string :
+
+# using slicing
+s=input("Enter your name : ")
+print(s[::-1])
+# without slicing
+s=input("Enter your name : ")
+i=len(s)-1
+rev_s=''
+while i>=0:
+    rev_s+=s[i]
+    i=i-1
+print(rev_s)
+# using for loop 
+s=input("Enter your name : ")
+i=len(s)-1
+rev_s=''
+for i in range(i,-1,-1):
+    rev_s+=s[i]
+print(rev_s)
+
+2. To reverse order of words :
+
+s=input("Enter your name : ")
+l=s.split()
+print(l)
+l1=[]
+i=len(l)-1
+while i>=0:
+    l1.append(l[i])
+    i=i-1
+print(l1)
+output=' '.join(l1)
+print(output)
+
+3. To reverse internal content of each words
+
+s=input("Enter your name : ")
+l=s.split()
+l1=[]
+for i in range(len(l)):    # for i in l:
+    s1=l[i]				   # 	l1.append(s1[::-1])
+    l1.append(s1[::-1])	   # output=' '.join(l1)
+print(l1)				   # print(output)
+output=' '.join(l1)
+print(output)
+
+4. Write program ro print characters in odd position and even positions
+
+#using slicing
+s=input("Enter String : ")
+print("char's in even position : ", s[0::2])
+print("char's in odd position : :, s[1::2])
+#without slicing
+i=0
+print("chars in even position are : ")
+while i<len(s):
+	print(s[i], end=',')
+	i+=2
+print()
+print("chars in odd position are : ")
+i=1
+while i<len(s):
+	print(s[i], end=',')
+	i+=2
+	
+5. Merging chars of two strings in to a single string by taking characters alternatively
+
+s1=input("Enter string 1 : ")
+s2=input("Enter String 2 : ")
+output=''
+i,j=0,0
+while i<len(s1) or j<len(s2):
+    output=output+s1[i]
+    i+=1
+    output+=s2[j]
+    j+=1
+print(output)
+
+6. i/p: B4A1D3  o/p: ABD134
+
+s=input("Enter string 1 : ")
+s1=s2=output=''
+for x in s:
+    if x.isalpha():
+        s1=s1+x
+    else:
+        s2=s2+x
+print(''.join([s1,s2]))
+print(s1+s2)
+print(''.join(sorted(s1))+''.join(sorted(s2)))
+
+7. i/p: a1b2c3  o/p: abbccc
+
+s=input("Enter string 1 : ")
+output=''
+for x in s:
+    if x.isalpha():
+        output=output+x
+        previous=x
+    else:
+        output=output+previous*(int(x)-1)
+print(output)
+
+8. i/p: a4k3b2  o/p:aeknbd
+
+s=input("Enter string 1 : ")
+output=''
+for x in s:
+    if x.isalpha():
+        output=output+x
+        previous=x
+    else:
+        ## for to understand, i/p=a4k3b2 expectedd o/p=aeknbd
+        ## ord(char) returns unicode while chr(unicode) returns char
+        output=output+chr(ord(previous)+int(x)) ## a=a+chr(97+4) => ae...
+print(output)
+
+9. i/p=ABCABCAAABCAD O/P=ABCD
+
+s=input("Enter string : ")
+output=''
+for x in s:
+    if x not in output:
+        output+=x
+print(output)
+
+10. i/p= ABAAABBCCDAABBBBCCCCCCCCDDDDDDDDDDDDDDDD o/p= A->6 B->7 C->10 D->17
+
+s=input("Enter string : ")
+d={}
+for x in s:
+    if x in d.keys():
+        d[x]+=1
+    else:
+        d[x]=1
+print(d)
+for k,v in d.items():
+    print('{}={} times'.format(k,v))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -517,55 +900,5 @@ print("Sum of given list of numbers are {}".format(sum))
 
 
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	   
+	
+	
