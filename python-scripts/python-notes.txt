@@ -871,6 +871,257 @@ print(d)
 for k,v in d.items():
     print('{}={} times'.format(k,v))
 
+list data type :
+===============
+> Group of elements as a single entity where insertion order is preserved and duplicates are allowed
+> Mutable
+> Scalable
+> homogeneous and heterogenious objects are allowed
+> slicing is applicable
+
+list creation :
+---------------
+> l=[]
+> dynamically creating list : l=eval(input("Enter list : "))
+> list(sequence) -> used to create list with that sequence. l=list('Raja') -> l=['R','a','j','a'] or list(range(4)) or list(range(5,21)), list(range(5,101,5))
+> spilt() converts ctring in to list Ex: s=input('Enter string: ')  l=s.split() print(l) print(type(l))
+> list inside another list is called nested list. Ex: l=[1,2,[1,2,3]]
+
+Accessing elements of the list :
+--------------------------------
+
+> two ways : (1) Using index and (2) Using slicing
+
+Ex: 
+l=[1,2,[1,2,3]]
+print(l[1]) #2
+print(l[2][2]) #2
+
+Ex: 
+l=[1,2,3]
+i=0
+while i<len(l):
+	print(l[i])
+	i+=1
+or
+l=[1,2,3]
+for i in l:
+	print(i)
+
+Ex : 
+
+l=[0,1,2,3,4,5,6,7,8,9]
+for i in l:
+	# print even numbers
+	if i%2==0:
+		print(i)
+	# print odd numbers
+	if i%2==1:
+		print(i)
+
+Ex:
+
+l=['A','B','C','D','E','F','G','H','I']
+i=0
+n=len(l)
+for i in range(n):
+	print('{} is avaialbleat positive index: {} and at negative index: {}'.format(l[i],i,i-n))	
+
+Important functions of list:
+----------------------------
+1. len() : returns length of given list, eg: n=len(l)
+2. count() : returns no of occurances of each element in the list, eg: print(l.count('A'))
+3. index() : returns 1st occurance of specified element. If it is not found, returns 'ValueError', eg : print(l.index('A'))
+4. append() : To add an element to the list, eg : l=[]; l.append('Raja')
+Ex :
+l=[]
+for i in range(101):
+	if i%10==0:
+		l.append(i)
+print(l)
+
+5. insert() : Insert element in the list at specified index
+Ex:
+l=[1,2,3]
+l.insert(1,4)
+print(l)
+
+6. extend() : adding all elemenets of one list to the another list
+Ex:
+l1=[1,2,3]
+l2=[4,5,6]
+l1.extend(l2)
+print(l1)
+
+7. remove() : Uses to remove specific item from the list. Always removes first occurance, if an element presented multiple times in the list.
+Ex:
+l=[1,2,3,1]
+l.remove(1)
+print(l) # If specified value is not avaialble then it will get "Value Error".
+
+8. pop() : Uses to remove last element from the list and returns that element.
+Ex: 
+l=[1,2,3,4]
+print(l.pop())
+print(l)
+
+9. del() : uses to delete the list.
+Ex:
+l=[1,2,3]
+del(l)
+print(l)
+
+10. reverse() : To display elements of the list in reverse order.
+Ex:
+l=[1,2,3,4]
+l.reverse()
+print(l)
+
+11. sort() : To sort all elements in a list. If we want to use sort() we must use homogeneous elements
+Ex :
+l=[1,4,2,3]
+l.sort()
+print(l)
+l.sort(reverse=True)
+print(l)
+
+Aliasing and cloning of the list object :
+-----------------------------------------
+
+> Creating duplicate reference is called as Aliasing. Aliasing is also called as "Shallow copy (create duplicate)" If we change anything in duplicate variables. The original list get affected
+  To avoid this problem. we can clone original list using 1. slice operator and 2. using copy() method.
+Ex:
+x=[1,2,3]
+y=x # Aliasing
+print(id(x))
+print(id(y))
+y.insert(1,5)
+print(x)
+
+Clone : Creating another object which will not affect on original list. It is also called as "deep copy"
+Ex:
+#cloning using slice operator :
+x=[1,2,3,4]
+y=x[::]
+y[1]=300
+print(x)
+print(y)
+# cloning using copy() method
+y=x.copy()
+y[1]=300
+print(x)
+print(y)
+
+*** Difference between x=y and x=y.copy()
+> x=y : duplicate reference is created
+> x=y.copy() : duplicate object is created
+
+Mathematical operators for list objects :
+------------------------------------------
+
+> '+' (concatnation operator) is work like extend()
+> '*' (repetition operator) : Ex : x=[1,2,3];y=x*3;print(y)
+
+Comparing list obejcts : 
+------------------------
+
+> To compare lists, The no of elements should be same , Order of the elements should be same and the content of the elemenetsshould be same.
+Ex:
+l1=['A','B'];l2=['B','A'];l3=['A'];l4=['a','b'];l5=['A','B']
+print(l1==l2)
+print(l1==l3)
+print(l1==l4)
+print(l1==l5)
+print(l1>l3)
+print(l3<l1)
+
+Membership operators in list :
+------------------------------
+Ex:
+l=[10,20,30,40]
+print(10 in l)
+print(100 in l)
+print(100 not in l)
+
+To remove all elements we can call clear() function : 
+Ex:
+l1=[1,2,3]
+print(l1)
+l1.clear()
+print(l1)
+
+Nested lists :
+--------------
+Nested list as matrix :
+Ex :
+x=[[1,2,3],[4,5,6],[7,8,9]]
+print(x)
+print('row wise: ')
+for x1 in x:
+	print(x1)
+print('Elements in matrix format : ')
+for i in range(len(x)):
+	for j in range(len(x[i])):
+		print(x[i][j], end=' ')
+		#print(i,j,end=' ')
+	print()
+
+***List comprehensions:
+-----------------------
+
+syntax :
+l=[expression for item in sequence]
+
+Ex: list of square of first 10 numbers
+l=[]
+for x in range(1,11):
+    l.append(x*x) # l.append(x**2)
+print(l)
+		or
+# using list comprehension
+l=[x*x for x in range(1,11)]
+print(l)
+
+# to print square of even first 10 numbers
+l=[x*x for x in range(1,11) if x%2==0]
+
+# double values from 1 to 100 where number should be divisible by 3
+s=[2*x for x in range(1,101) if x%3==0]
+print(s)
+
+# display name if length is greter than 5 characters
+words=['Aishwarya','Raj']
+l=[x for x in words if len(x)>5]
+print(l)
+
+#select numbers present in l1 but not in l2
+l1=[1,2,3];l2=[4,5,1]
+print([x for x in l1 if x not in l2])
+
+# Ex
+words="the quick brown fox jumps over the lazy dog"
+l=[[w.upper(), len(w)] for w in words]
+print(l)
+	
+# unique vowels present in the given word
+vowels=['a','e','i','o','u']
+word=input("Enter your name : ")
+output=[]
+for letter in word:
+	if letter in vowels:
+		if letter not in output:
+			output.append(letter)
+print(output)
+print('The length of unique vowels : ', len(output))
+
+
+
+
+
+
+
+
+
 
 
 
