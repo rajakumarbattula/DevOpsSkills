@@ -1114,6 +1114,269 @@ for letter in word:
 print(output)
 print('The length of unique vowels : ', len(output))
 
+Tuple :
+=======
+
+*** List vs Tuple
+> tuple is read only version of List (Immutable)
+> insertion order is preserved
+> duplicates are allowed
+> allows both homogeneous and heterogenious objects
+> indexing is possible 
+> ()
+tuple creation  :
+-----------------
+t=()
+t=10,
+t=(10,)
+t=(10,20,30)
+t=10,20,30
+> convert list or set to tuple : t=tuple(l)
+> Accessing elements of tuple : 1. using index and 2. using slice
+> Mathematical operators of tuple : + and *
+Important functions of tuple :
+------------------------------
+1. len()
+2. count()
+3. index()
+4. sorted()  # after sorting, returns list type
+5. min()
+6. max()
+** Tuple packing and unpacking :
+--------------------------------
+> packing
+Ex :
+a,b,c,d=10,20,30,40
+t=a,b,c,d
+print(t)
+
+> unpacking
+Ex :
+t=(10,20,30,40)
+a,b,c,d=t
+print(a,b,c,d)
+
+**Tuple comprehension :
+=======================
+> It is not applicable in tuple. because after executing tuple comprehension, it returns "generator" type
+t=(x*x for x in range(1,11))
+print(type(x))
+for v in t:
+	print(v)
+
+Ex: Generator example 
+
+def generator_fibonacci():
+	a,b=0,1
+	while True:
+		yield a
+		a,b=b,a+b
+seq=generator_fibonacci()
+print(next(seq))
+print(next(seq))
+print(next(seq))
+
+Ex : 
+t=eval(input("Enter tuple : "))
+sum=0
+for x in t:
+	sum=sum+x
+print("sum is : ", sum)
+print("The avg is : ", sum/len(t))
+
+Set :
+=====
+
+> duplicates are not allowed
+> insertion order is not preserved
+> no indexing and no slicing
+> homogeneous and heterogenious objects are allowed
+> Mutable
+> elements are enclosed in {}
+
+Creating set objects :
+---------------------- 
+s={10,20,30}
+*** s=set() -> empyt set | s={} -> creates empty dict
+s=set(sequence)
+
+Important functions of set :
+----------------------------
+
+1. add(x) -> adds x element to the set
+2. update(x,y,z) -> adds multiple elements to the set
+*** add() vs update()
+Ex :
+s=set()
+s.update([10,20],(10,20),'Raja',range(0,6))
+print(s)
+s.add("[6,7,8]")
+print(s)
+
+*** List is not hashable and tuple is hashable. why ?
+-----------------------------------------------------
+
+Ex: 
+s=set()
+s.add(10)
+# s.add(10,20,30) invalid
+# s.update(10) invalid due to int object is not iterable
+s.update([10,20],range(10))
+# s.add([10,20]) invalid due to list not hashable 
+print(s)
+
+Ex.
+l = [1,2,3,4]
+# show the hash value
+print(hash(l))
+# show the id value
+print(id(l))
+# show the hash value
+print (l.__hash__())
+t = (1,2,3,4)
+print(hash(t))
+print(id(t))
+print(t.__hash__())
+
+3. copy() : used to clone another set object
+
+Ex:
+s1={1,2,3}
+s2=s1.copy()
+s1.add(4)
+print(s1)
+print(s2)
+
+4. pop() : removes random element from given set
+
+Ex:
+s1={1,2,3}
+print(s1.pop())
+print(s1)
+print(s1.pop())
+print(s1)
+print(s1.pop())
+print(s1)
+
+5. remove(x) : used to remove particular element from given set. If the value is not present, it throws 'Key error'
+
+Ex:
+s1={1,2,3}
+s1.remove(3)
+print(s1)
+s1.remove(1)
+print(s1)
+s1.remove(2)
+print(s1)
+
+6. discard(x) : used to remove particular element from given set. If value is not present, It will not throws any 'key error'
+7. clear() : used to clear all elements from the set
+8. union()
+9. inetrsection()
+10. difference() : returns uncommon elements from first set not from second set
+11. symmetric-difference()
+Ex :
+s1={1,2,3}
+s2={2,3,4,5}
+s3=s1.union(s2)   # s1|s2
+print(s3)
+s4=s1.intersection(s2)   # s1&s2
+print(s4)
+s5=s1.difference(s2)   # s1-s2
+print(s5)
+s6=s1.symmetric_difference(s2)  # s1^s2
+print(s6)
+
+Membership operators in set :
+-----------------------------
+s=set('Rajakumar')
+print(s)
+print('R' in s)
+print('R' not in s)
+print('z' not in s)
+print('z' in s)
+
+Set comprehension :
+-------------------
+
+syntax : s={expression for x in sequence condition}
+Ex:
+s={x*x for x in range(5)}
+print(s)
+
+Ex:
+s1={2*x for x in range(2,11,2)}
+print(s1)
+
+Note : Set object does't support slicing and indexing
+
+Ex:
+s1=(1,2,3)
+print(s[0]) # not support indexing
+print(s[::]) # not support slicing
+
+Ex : Program to delete duplicates in the list
+----------------------------------------------
+first method :
+--------------
+l=eval(input('Enter list : '))
+s=set(l)
+print(s)
+second method :
+---------------
+l=eval(input('Enter list : '))
+l1=[]
+for x in l:
+    if x not in l1:
+        l1.append(x)
+print(l1)
+
+Ex : WAP to print different vowels present in given name
+---------------------------------------------------------
+
+word=input('Enter any name : ')
+s=set(word)
+print(s)
+vowels={'a','e','i','o','u'}
+d=s&vowels
+print('The different vowels presented in ', word, 'are :',d)
+print('The different vowels presented in ', word, 'are :',sorted(d))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
