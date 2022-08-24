@@ -1342,6 +1342,211 @@ d=s&vowels
 print('The different vowels presented in ', word, 'are :',d)
 print('The different vowels presented in ', word, 'are :',sorted(d))
 
+frozenset :
+===========
+
+> frozenset is readable version of set
+> It is immutable
+> Insertion order has no gaurante
+> duplicatesare not allowed
+> Slicing and indexing is not applicable
+> homogeneous and heterogenious objects are allowed
+
+defination :
+------------
+> frozenset(iterable-item)
+
+Ex:
+str1="Rajakumar Battula"
+fs=frozenset(str1)
+print(type(fs))
+print(fs)
+
+l=[1,2,3]
+fs=frozenset(l)
+print(type(fs))
+print(fs)
+
+s={1,2,3}
+fs=frozenset(s)
+print(type(fs))
+print(fs)
+
+t=(1,2,3)
+fs=frozenset(t)
+print(type(fs))
+print(fs)
+
+# print(fs[1]) -> illegal
+
+***dictionary :
+==============
+
+> Uses to store group of key, value pairs
+
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+
+> insertion order is preserved
+> scalable / mutable
+> do not allow duplicate keys
+> alloed homogeneous and heterogenious objects
+
+Creation :
+==========
+ > d={}
+ > d=dict()
+ > d={ 'a':1, 'b':2, 'c':3}
+
+To add key and value :
+----------------------
+d={}
+d[key]=value
+
+> If the key is already present the old value will be replaced with new value
+
+Ex:
+d=dict()
+d[1]='a'
+d[2]='b'
+d[3]='c'
+print(d)
+
+Accessing values from the dictionary :
+--------------------------------------
+
+> using key, we can directly access its value
+Ex :
+d={ 'a':1, 'b':2, 'c':3}
+print(d['a'])
+
+> if key is not avaialblein dictionary, we will get key error. to avoid this,
+
+Ex :
+d={ 'a':1, 'b':2, 'c':3}
+if 'a' in d:
+	print(d['a'])
+else:
+	print("Key not found")
+
+updating dictionaries :
+-----------------------
+> d[key]=value
+
+Ex:
+d['a']=100
+d['a']=d['a']+1
+
+deleting elements from the dictionary :
+---------------------------------------
+> using 'del', we can delete elemenets in the dictionary. If key is not present, we will get 'KeyError'
+
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+print(d)
+del d['a']
+print(d)
+
+> to delete all values, we should use clear()
+
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+d.clear()
+print(d)
+
+Important functions of dictioary :
+----------------------------------
+
+1. dict() : creates empty dictionary
+2. len(d) : returns length of the dictionary
+3. get(key) : returns value associated with key
+4. pop(key) : deletes key and value pair which is associated with particular key. If key is not present, we will get 'KeyError'
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+print(d.pop('a'))
+print(d)
+
+5.popitem() : randomly removes the key-value pair
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+print(d.popitem('a'))
+print(d)
+
+6.keys() : returns list of all keys from the given dictionary
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+print(d.keys())
+
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+for k in d.keys():
+	print(k)
+
+7.values() : returns list of all values from the given dictionary
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+for v in d.values():
+	print(v)
+
+8. items() : returns list of tuples representing key-values pairs
+Ex:
+d={ 'a':1, 'b':2, 'c':3}
+for k,v in d.items():
+	print(k,':',v)
+
+9. copy() : Used to clone dictioary
+Ex:
+d1={ 'a':1, 'b':2, 'c':3}
+d2=d1.copy()
+d2['d']=4
+print(d2)
+print(d1)
+
+10. setdefault(k,v) : returns correspondingvalues for the given key. If key is not avaialble, Then it updates value to the corresponding key
+Ex:
+d1={ 'a':1, 'b':2, 'c':3}
+print(d.setdefault('d',4))
+print(d1)
+
+11.update(dict1) : Add dict1 dictioary to given dictioary
+Ex:
+d1={ 'a':1, 'b':2, 'c':3}
+d2={'d':4, 'Raja':6.1}
+d1.update(d2)
+print(d1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
