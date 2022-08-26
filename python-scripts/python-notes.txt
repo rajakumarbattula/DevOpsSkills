@@ -1574,6 +1574,7 @@ print("The sum is %i and the sub is %i" %(x,y))
 	2. keyword      "   "
 	3. default      "   "
 	4. variable length ""
+	5. keyword variable length arguments
 
 1. positional arguments : position matters in a function call.
 	Ex:
@@ -1595,7 +1596,7 @@ print("The sum is %i and the sub is %i" %(x,y))
 	
 Note: In any function, we can also pass positional and keyboard arguments at a time. But we should pass positional arguments first and then pass keyboard arguments
 
-3. Default functions :
+3. Default arguments :
 	Ex:
 	def wish(name="Raja")
 		print("Hello ",name,"Good morning")
