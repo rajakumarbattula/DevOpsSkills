@@ -1390,7 +1390,7 @@ d={ 'a':1, 'b':2, 'c':3}
 > insertion order is preserved
 > scalable / mutable
 > do not allow duplicate keys
-> alloed homogeneous and heterogenious objects
+> allowedd homogeneous and heterogenious objects
 
 Creation :
 ==========
@@ -1502,10 +1502,10 @@ d2['d']=4
 print(d2)
 print(d1)
 
-10. setdefault(k,v) : returns correspondingvalues for the given key. If key is not avaialble, Then it updates value to the corresponding key
+10. setdefault(k,v) : returns corresponding values for the given key. If key is not avaialble, Then it updates value to the corresponding key
 Ex:
 d1={ 'a':1, 'b':2, 'c':3}
-print(d.setdefault('d',4))
+print(d1.setdefault('d',4))
 print(d1)
 
 11.update(dict1) : Add dict1 dictioary to given dictioary
@@ -1514,6 +1514,289 @@ d1={ 'a':1, 'b':2, 'c':3}
 d2={'d':4, 'Raja':6.1}
 d1.update(d2)
 print(d1)
+
+functions :
+===========
+> code reusability
+> two types : predefined functions and user defined functions
+> defination :
+	def function-name():
+		<statements>
+		return <value>
+> return statement is optional. by default, function returns null
+> Using functions, we can acheive DRY code (Don't repeat yourself) and we can avoid WET code (write everything twice)
+
+Ex :
+def write(name):
+	print("Hello..,",name,"Good morning..!")
+# write() -> illegal
+# write(Rajakumar) -> legal
+name=input("Enter name : ")
+write(name)
+
+Ex:
+def squareIt(x):
+	return x*x
+n=int(input("Enter any number : "))
+print("The square of {} is {}".format(n,squareIt(n)))
+
+> method overloading and method overriding concept is not available in python
+
+Ex:
+
+def add(x,y):
+	return x+y
+def add(x+y+z)
+	return x+y+Z
+# we can call add(1,2,3)
+
+Ex : factorial
+
+def factorial(n):
+	result=1
+	while n>=1:
+		result*=n
+		n-=1
+	return result
+for i in range(1,11):
+	print("The factorial of {} is {}".format(i,factorial(i)))
+
+Ex : 
+
+def sum_sub(a,b):
+    sum,sub=a+b,a-b
+    return sum,sub
+x,y=sum_sub(10,5)
+print("The sum is %i and the sub is %i" %(x,y))
+
+> type of arguments in python
+	1. positional arguments
+	2. keyword      "   "
+	3. default      "   "
+	4. variable length ""
+
+1. positional arguments : position matters in a function call.
+	Ex:
+	def sum(a,b):
+		print(a-b)
+	sub(200,50)  --> a=200 and b=50
+	
+2. Keyboard arguments : .Order is not important, increses more readability
+	Ex:
+	def sub(a,b):
+		print(a-b)
+	sub(a=100, b=200)
+
+	Ex:
+	def wish(name, msg):
+		print('Hello: ', name, msg)
+	wish(name="Raja", msg="Good day")
+	wish(msg="Good day", name="Raja")
+	
+Note: In any function, we can also pass positional and keyboard arguments at a time. But we should pass positional arguments first and then pass keyboard arguments
+
+3. Default functions :
+	Ex:
+	def wish(name="Raja")
+		print("Hello ",name,"Good morning")
+	wish("Rama")
+	wish() --> takes default value
+
+4. Variable length arguments : we can pass any number of arguments. by default these arguments stored in the form of tuple
+	Ex: 
+	def m1(*n):
+		print(type(n))
+		print('var-arg fun')
+	m1()
+	m1(10)
+	m1(10,20,30)
+Ex:
+def sum(*n):
+	total=0
+	for n1 in n:
+		total+=n1
+	print("The sum is : ", total)
+sum()
+sum(10,20)
+sum(10,20,30)
+
+Ex:
+def f1(*n,x):
+    print('normal argument',x)
+    print('variable length argument : ')
+    for i in n:
+        print(i)
+# f1() 
+# f1(10)
+f1(x=10)
+# f1(10,20,30)
+f1(10,20,x=30)
+# f1(x=10, 20,30)
+
+5. variable length keyboard arguments : any no of keywords arguments can be passed. It's default type is dictionary
+Ex:
+
+def f1(**kwargs):
+	print('variable length keyword argument method')
+	for k,v in kwargs.items():
+		print(k,'=',v)
+f1(x=10, y=20, z=30)
+f1(name="Raja",sub1="python",sub2="java")
+
+Ex :
+
+def f1(a,b,c,*n,x=25):
+	...
+	...
+f1(10,20,c=30,1,2,3,x=99)
+
+> In core python, variables in functional programming are two types 1.local 2. global
+
+Ex:
+a=10 -> by defacult it is global variable
+def f1():
+	b=10 -> by default it is local variable
+	
+> global keyword: using global keyword we can declare glabal variable with in function
+
+Ex:
+def f1():
+	global a
+	a=999
+	print(a)
+def f2():
+	print(a)
+f1()
+f2()
+
+Recursive functions:
+--------------------
+
+A function calling itself again and again
+
+> we can reduce length of the code
+> we can solve complex problems easily
+
+Ex: factorial operation using recursive function
+
+def factorial(n):
+    if n==0:
+        return 1
+    else:
+        return n*factorial(n-1)
+print('Factorial of 4 is :', factorial(4))
+
+Anonymous functions : [  lambda functions or lambda expressions  ]
+==================================================================
+
+> If functions declared without name. That functions are called as "Anonymous functions". We use these functions instantly
+Ex: 
+def square(n):
+	return n*n
+print(square(4))
+
+> same example using lambda function :
+Ex: square
+s=lambda n:n*n
+print(s(5))
+
+Ex: Sum
+sum=lambda a,b:a*b
+print(sum(2,3))
+
+Ex: largest
+s=lambda a,b:a if a>b else b
+print(s(89,66))
+
+> Every lambda function returns value implicitely. No need to write 'return' keyword
+
+*** filter(), map(), reduce() functions : 
+=========================================
+
+filter(function,sequence) :
+---------------------------
+
+> filter function filters no of elements based on given condition inside any sequence (list,string,tuple,...)
+
+Ex:
+
+l=[0,5,10,15,20,25,30,35,40,45,50]
+def isEven(n):
+	if n%2==0:
+		return True
+	else:
+		return False
+l1=list(filter(isEven,l))
+print(l1)
+
+using lambda expression :
+-------------------------
+
+l=[0,5,10,15,20,25,30,35,40,45,50]
+l1=list(filter(lambda n:n%2==0,l))
+print(l1)
+
+map(function,sequence):
+-----------------------
+
+Ex: 
+def cube(n):
+	return n**3
+l=[2,3,5,7,11]
+l1=list(map(cube,l))
+print(l1)
+
+or
+
+l=[2,3,5,7,11]
+l1=list(map(lambda n:n**3,l))
+print(l1)
+
+Ex : product of two lists
+
+l1=[2,3,5,7,11]
+l2=[4,2,3,5,8]
+l3=list(map(lambda x,y:x*y, l1, l2))
+print(l3)
+
+***reduce(function,sequence):
+-----------------------------
+
+> It reduces sequence of elements
+> returns only a value. type casting is not required
+> reduce() is not implicitely available. To use this method, we need to explicitly import this method from "functools" module
+									"from functools import reduce"
+Ex:
+from functools import reduce
+l=[10,20,30,40,50]
+result=reduce(lambda x,y:x+y,l)
+print(result)
+
+Function aliasing : Giving another name to the existing function
+----------------------------------------------------------------
+
+Ex:
+def add(n1,n2):
+    return n1+n2
+a=int(input("Enter n1 : "))
+b=int(input("Enter n2 : "))
+add(a,b)
+sum=add
+sum(a,b)
+print(sum(a,b))
+del add
+print(sum(a,b))
+print(add(a,b)) # error due to add() not available
+
+
+
+
+
+
+
+
+
+
 
 
 
