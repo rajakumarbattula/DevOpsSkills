@@ -1702,7 +1702,7 @@ s=lambda n:n*n
 print(s(5))
 
 Ex: Sum
-sum=lambda a,b:a*b
+sum=lambda a,b:a+b
 print(sum(2,3))
 
 Ex: largest
@@ -1737,7 +1737,7 @@ l=[0,5,10,15,20,25,30,35,40,45,50]
 l1=list(filter(lambda n:n%2==0,l))
 print(l1)
 
-map(function,sequence):
+map(function,sequence): map function performs functional operational inside any sequence (list,string,tuple,...)
 -----------------------
 
 Ex: 
@@ -1816,6 +1816,24 @@ def outer():
 	add(10,20)
 outer()
 
+Ex:
+
+def f1():
+    def inner(*n):
+        sum=0
+        for i in n:
+            sum+=i
+        return sum
+    print("Addition of a and b is ",inner(2,3,5))
+    print("Addition of a and b is ",inner(4,5))
+    print("Addition of a and b is ",inner(101,209))
+    print("Addition of a and b is ",inner(3333,9))
+    print("Addition of a and b is ",inner(1908,76))
+    print("Addition of a and b is ",inner(98669,98698))
+    print("Addition of a and b is ",inner())
+    print("Addition of a and b is ",inner(98,66,9,98,6,98))
+f1()
+
 ***Function Decorators :
 ========================
 
@@ -1873,16 +1891,15 @@ Ex:
 def decor(func):
     def inner(name):
         if name=='Rama':
-            print('Good morning..Raja')
-        else:
-            func(name)
-    inner()
-       
+            print("Hi Rama")
+    return inner
 
 @decor
-def wish(name):
-    print('Good morning..', name)
-wish('kamala')
+def f1(name):
+    print("Hello ",name)
+
+f1("Krishna")
+f1("Rama")
 
 
 
