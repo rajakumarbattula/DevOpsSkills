@@ -1789,6 +1789,103 @@ del add
 print(sum(a,b))
 print(add(a,b)) # error due to add() not available
 
+Nested functions :
+==================
+
+> define function inside another function is called as "nested functions"
+
+Ex:
+
+def f1():
+	print("outer function")
+	def f2():
+		print("inner function")
+	print("calling inner function from outer function")
+	f2()
+print("outer function calling")
+f1()
+
+> Inner function can't be accessible directly from outside inner function
+> To reduce no.of lines in the function. we can use "nested functions"
+
+Ex:
+
+def outer():
+	def add(*n):
+		print(sum(n))
+	add(10,20)
+outer()
+
+***Function Decorators :
+========================
+
+> To add extra functionality to the function without changing its original functionality, we can use function Decorators
+
+Ex:
+
+def decor(func):
+    def inner():
+        print('Enhanced function')
+    return inner
+
+@decor
+def f3():
+    print('Normal function')
+    
+f3()
+
+Ex:
+
+def decor1(func):
+    def inner():
+        func()
+        print('Enhanced function for f1')
+    return inner
+
+def decor2(func):
+    def inner():
+        print('Enhanced function for f2')
+    return inner
+
+def decor3(func):
+    def inner():
+        print('Enhanced function for f3')
+    return inner
+
+@decor1
+def f1():
+    print('Normal function for f1')
+
+@decor2
+def f2():
+    print('Normal function for f2')
+
+@decor3
+def f3():
+    print('Normal function for f3')
+
+f1()
+f2()
+f3()
+
+Ex:
+
+def decor(func):
+    def inner(name):
+        if name=='Rama':
+            print('Good morning..Raja')
+        else:
+            func(name)
+    inner()
+       
+
+@decor
+def wish(name):
+    print('Good morning..', name)
+wish('kamala')
+
+
+
 
 
 
