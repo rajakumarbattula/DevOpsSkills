@@ -1901,121 +1901,394 @@ def f1(name):
 f1("Krishna")
 f1("Rama")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Exception Handling :
+====================
+
+> Any programming language there are two type of errors are possible :
+	1) syntax errors and 2) Run time errors
+> Exception handling concept to handle runtime errors.
+> Exception : It is an unexpected event occurs during run time execution of the program
+> Ex : ZeroDivisionError, TypeError, ValueError, FileNotFoundError, EOFError ... etc
+> Exception handling concept provides alternate way to complete execution flow of your program
+> Ex. programming requirement is reading data from remote file locating at 
+	London. At runtime if london file is not available then the program should not be 
+	terminated abnormally. We have to provide local file to continue rest of the program 
+	normally. This way of defining alternative is nothing but exception handling.
+	
+	try :
+			read data from remote file locating at london
+	except FileNotFoundError:
+			use local file and continue rest of the program normally
+		
+> Every exception in python is an object. For every Exception type, the correpomding classes are available
+
+try/except block :
+
+stmt 1
+try:
+	stmt 2
+	stmt 3
+	stmt 4
+except Ex:
+	stmt 5
+stmt 6
+
+Ex:
+print('Hello')
+print(10/0) --> ZeroDivisionError
+print('Hi')
+
+using exception handling :
+-------------------------
+print('Hello')
+try:
+	print(10/0)
+execpt ZeroDivisionError:
+	print(10/2)
+print('Hi')	
+Exception hierarchy :
+=====================
+
+BaseException(super class): 1.Exception		2. SystemExit		3. GeneratorExit		4. KeyboardInterrupt
+> Exception : Attribute Error, Arithmatic Error, EOF Error,  Name Error,  Lookup error,  OS Error,  Type Error, Value Error
+> Arithmatic error: ZeroDivisionError, FloatingPointError,  OverflowError
+> Lookup Error: Index Error, Key Error
+> OS Error: FileNotFoundError, InterruptedError, PermissionError, TimeOutError
+
+> How to print exception information :
+--------------------------------------
+
+try:
+	print(10/0)
+except ZeroDivisionError as msg:
+	print('Exception raised : ',msg)
+	
+> try with multiple excepts :
+-----------------------------
+
+try:
+	...
+	...
+	...
+except ZeroDivisionError as msg1:
+	print('Raised Exception : ',msg1)
+except FileNotFoundError as msg2:
+	print('Raised Exception : ',msg2)
 	
 	
+Ex:
+
+try: 
+  x=int(input("Enter First Number: ")) 
+  y=int(input("Enter Second Number: ")) 
+  print(x/y) 
+except ZeroDivisionError: 
+  print("Can't Divide with Zero") 
+except ValueError: 
+  print("please provide int value only")
+  
+> Single except block that can handle multiple exceptions :
+-----------------------------------------------------------
+
+> We can write a single except block that can handle multiple different types of exceptions
+
+	except (Exception1,Exception2,exception3,..): or
+	except (Exception1,Exception2,exception3,..) as msg : 
+
+> Parenthesis are mandatory and this group of exceptions internally considered as tuple.
+
+Ex:
+
+try: 
+	x=int(input("Enter First Number: ")) 
+	y=int(input("Enter Second Number: ")) 
+	print(x/y) 
+except (ZeroDivisionError,ValueError) as msg: 
+	print("Plz Provide valid numbers only and problem is: ",msg)
 	
+> Default except block:
+> We can use default except block to handle any type of exceptions.
+> In default except block generally we can print normal error messages.
+	Syntax: 
+	 except:
+	 statements
+Eg:
+try: 
+	 x=int(input("Enter First Number: ")) 
+	 y=int(input("Enter Second Number: ")) 
+	 print(x/y) 
+except ZeroDivisionError: 
+	print("ZeroDivisionError:Can't divide with zero") 
+except: 
+	print("Default Except:Plz provide valid input only") 
+ 
+D:\Python_classes>py test.py 
+Enter First Number: 10 
+Enter Second Number: 0 
+ZeroDivisionError:Can't divide with zero
+
+***Note: If try with multiple except blocks available then default except block should be 
+		last,otherwise we will get SyntaxError.
+
+Eg:
+try: 
+	print(10/0) 
+except: 
+	print("Default Except") 
+except ZeroDivisionError: 
+	print("ZeroDivisionError") 
+ 
+SyntaxError: default 'except:' must be last 
+
+> Note: The following are various possible combinations of except blocks
+	1. except ZeroDivisionError:
+	2. except ZeroDivisionError as msg:
+	3. except (ZeroDivisionError,ValueError) :
+	4. except (ZeroDivisionError,ValueError) as msg:
+	5. except :
+
+finally block:
+==============
+
+> It is not recommended to maintain clean up code(Resource Deallocating Code or 
+Resource Releasing code) inside try block because there is no guarentee for the execution 
+of every statement inside try block always.
+> It is not recommended to maintain clean up code inside except block, because if there 
+is no exception then except block won't be executed.
+Hence we required some place to maintain clean up code which should be executed 
+always irrespective of whether exception raised or not raised and whether exception 
+handled or not handled. Such type of best place is nothing but finally block.
+Hence the main purpose of finally block is to maintain clean up code.
+	try:
+	 Risky Code
+	except: 
+	 Handling Code
+	finally:
+	 Cleanup code
+ 
+Case-1: If there is no exception
+	try: 
+		print("try") 
+	except: 
+		print("except") 
+	finally: 
+		print("finally") 
+ 
+Output:
+ try 
+ finally
+
+Case-2: If there is an exception raised but handled:
+	try: 
+		 print("try") 
+		 print(10/0) 
+	except ZeroDivisionError: 
+		print("except") 
+	finally: 
+		print("finally") 
+Output
+	try
+	except 
+	finally 
+
+Case-3: If there is an exception raised but not handled:
+	try: 
+		print("try") 
+		print(10/0) 
+	except NameError: 
+		print("except") 
+	finally: 
+		print("finally") 
+	 
+Output :
+	try 
+	finally 
+	ZeroDivisionError: division by zero(Abnormal Termination) 
+
+*** Note: There is only one situation where finally block won't be executed ie whenever 
+	we are using os._exit(0) function.
+
+
+> Whenever we are using os._exit(0) function then Python Virtual Machine itself will be 
+	shutdown.In this particular case finally won't be executed.
+
+imports 
+try: 
+	print("try") 
+	os._exit(0) 
+except NameError: 
+	print("except") 
+finally: 
+	print("finally") 
+ 
+Output
+	try 
+> Note:
+	os._exit(0)
+	 where 0 represents status code and it indicates normal termination
+	 There are multiple status codes are possible.
+ 
+Control flow in try-except-finally:
+
+	try:
+	 stmt-1
+	 stmt-2
+	 stmt-3
+	except:
+	 stmt-4
+	finally:
+	 stmt-5
+	stmt6
+ 
+Case-1: If there is no exception
+
+	1,2,3,5,6 Normal Termination
+Case-2: If an exception raised at stmt2 and the corresponding except block matched
+	1,4,5,6 Normal Termination
+Case-3: If an exception raised at stmt2 but the corresponding except block not matched
+	1,5 Abnormal Termination
+Case-4:If an exception raised at stmt4 then it is always abnormal termination but before 
+	that finally block will be executed.
+Case-5: If an exception raised at stmt-5 or at stmt-6 then it is always abnormal 
+	termination
+
+Nested try-except-finally blocks:
+> We can take try-except-finally blocks inside try or except or finally blocks.i.e nesting of tryexcept-finally is possible.
+	try:
+	 ----------
+	 ----------
+	 ----------
+	 try:
+	 -------------
+	 --------------
+	 --------------
+	 except:
+	 --------------
+	 --------------
+	 --------------
+	 ------------
+	except:
+	 -----------
+	 -----------
+	 -----------
+> General Risky code we have to take inside outer try block and too much risky code we 
+	have to take inside inner try block. Inside Inner try block if an exception raised then inner 
+	except block is responsible to handle. If it is unable to handle then outer except block is 
+	responsible to handle.
+
+Eg:
+ try: 
+	print("outer try block") 
+	try: 
+		print("Inner try block") 
+		print(10/0) 
+	except ZeroDivisionError: 
+		print("Inner except block") 
+	finally: 
+	print("Inner finally block") 
+ except: 
+	print("outer except block") 
+ finally: 
+	print("outer finally block") 
+ 
+ Output
+ outer try block 
+ Inner try block 
+ Inner except block 
+ Inner finally block 
+ outer finally block
+
+Control flow in nested try-except-finally:
+try:
+	stmt-1
+	stmt-2
+	stmt-3
+	try:
+		stmt-4
+		stmt-5
+		stmt-6
+	except X:
+		stmt-7
+	finally:
+		stmt-8
+		stmt-9
+except Y:
+	stmt-10
+finally:
+	stmt-11
+	stmt-12
+
+case-1: If there is no exception
+	1,2,3,4,5,6,8,9,11,12 Normal Termination
+case-2: If an exception raised at stmt-2 and the corresponding except block matched
+	1,10,11,12 Normal Termination
+case-3: If an exceptiion raised at stmt-2 and the corresponding except block not matched
+	1,11,Abnormal Termination
+case-4: If an exception raised at stmt-5 and inner except block matched 
+	1,2,3,4,7,8,9,11,12 Normal Termination
+case-5: If an exception raised at stmt-5 and inner except block not matched but outer except block matched
+	1,2,3,4,8,10,11,12,Normal Termination
+case-6:If an exception raised at stmt-5 and both inner and outer except blocks are not matched 
+	1,2,3,4,8,11,Abnormal Termination
+case-7: If an exception raised at stmt-7 and corresponding except block matched
+	1,2,3,.,.,.,8,10,11,12,Normal Termination
+case-8: If an exception raised at stmt-7 and corresponding except block not matched
+	1,2,3,.,.,.,8,11,Abnormal Termination
+case-9: If an exception raised at stmt-8 and corresponding except block matched
+	1,2,3,.,.,.,.,10,11,12 Normal Termination
+case-10: If an exception raised at stmt-8 and corresponding except block not matched
+	1,2,3,.,.,.,.,11,Abnormal Termination
+case-11: If an exception raised at stmt-9 and corresponding except block matched
+	1,2,3,.,.,.,.,8,10,11,12,Normal Termination
+case-12: If an exception raised at stmt-9 and corresponding except block not matched
+	1,2,3,.,.,.,.,8,11,Abnormal Termination
+case-13: If an exception raised at stmt-10 then it is always abonormal termination but before abnormal termination finally block(stmt-11) will be executed
+case-14: If an exception raised at stmt-11 or stmt-12 then it is always abnormal termination.
+> Note: If the control entered into try block then compulsary finally block will be executed.If the control not entered into try block then finally block won't be executed.
+
+else block with try-except-finally:
+-----------------------------------
+
+> We can use else block with try-except-finally blocks.
+> else block will be executed if and only if there are no exceptions inside try block.
+
+try:
+	Risky Code
+except:
+	will be executed if exception inside try
+else:
+	will be executed if there is no exception inside try
+finally:
+	will be executed whether exception raised or not raised and handled or not handled
+
+Eg:
+try:
+	print("try")
+	print(10/0)--->1
+except:
+	print("except")
+else:
+	print("else")
+finally:
+	print("finally")
+
+> If we comment line-1 then else block will be executed b'z there is no exception inside try.
+> In this case the output is:
+	try
+	else
+	finally
+> If we are not commenting line-1 then else block won't be executed b'z there is exception 
+
+inside try block. In this case output is:
+	try
+	except
+	finally
+
+Various possible combinations of try-except-else-finally:
+
+	1. Whenever we are writing try block, compulsory we should write except or finally block.i.e without except or finally block we cannot write try block.
+	2. Wheneever we are writing except block, compulsory we should write try block. i.e	except without try is always invalid.
+	3. Whenever we are writing finally block, compulsory we should write try block. i.e finally	without try is always invalid.
+	4. We can write multiple except blocks for the same try,but we cannot write multiple 	finally blocks for the same try
+	5. Whenever we are writing else block compulsory except block should be there. i.e 	without except we cannot write else block.
+	6. In try-except-else-finally order is important.
