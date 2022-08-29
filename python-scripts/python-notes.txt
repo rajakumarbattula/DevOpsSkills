@@ -1390,7 +1390,7 @@ d={ 'a':1, 'b':2, 'c':3}
 > insertion order is preserved
 > scalable / mutable
 > do not allow duplicate keys
-> alloed homogeneous and heterogenious objects
+> allowedd homogeneous and heterogenious objects
 
 Creation :
 ==========
@@ -1502,10 +1502,10 @@ d2['d']=4
 print(d2)
 print(d1)
 
-10. setdefault(k,v) : returns correspondingvalues for the given key. If key is not avaialble, Then it updates value to the corresponding key
+10. setdefault(k,v) : returns corresponding values for the given key. If key is not avaialble, Then it updates value to the corresponding key
 Ex:
 d1={ 'a':1, 'b':2, 'c':3}
-print(d.setdefault('d',4))
+print(d1.setdefault('d',4))
 print(d1)
 
 11.update(dict1) : Add dict1 dictioary to given dictioary
@@ -1515,109 +1515,786 @@ d2={'d':4, 'Raja':6.1}
 d1.update(d2)
 print(d1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+functions :
+===========
+> code reusability
+> two types : predefined functions and user defined functions
+> defination :
+	def function-name():
+		<statements>
+		return <value>
+> return statement is optional. by default, function returns null
+> Using functions, we can acheive DRY code (Don't repeat yourself) and we can avoid WET code (write everything twice)
+
+Ex :
+def write(name):
+	print("Hello..,",name,"Good morning..!")
+# write() -> illegal
+# write(Rajakumar) -> legal
+name=input("Enter name : ")
+write(name)
+
+Ex:
+def squareIt(x):
+	return x*x
+n=int(input("Enter any number : "))
+print("The square of {} is {}".format(n,squareIt(n)))
+
+> method overloading and method overriding concept is not available in python
+
+Ex:
+
+def add(x,y):
+	return x+y
+def add(x+y+z)
+	return x+y+Z
+# we can call add(1,2,3)
+
+Ex : factorial
+
+def factorial(n):
+	result=1
+	while n>=1:
+		result*=n
+		n-=1
+	return result
+for i in range(1,11):
+	print("The factorial of {} is {}".format(i,factorial(i)))
+
+Ex : 
+
+def sum_sub(a,b):
+    sum,sub=a+b,a-b
+    return sum,sub
+x,y=sum_sub(10,5)
+print("The sum is %i and the sub is %i" %(x,y))
+
+> type of arguments in python
+	1. positional arguments
+	2. keyword      "   "
+	3. default      "   "
+	4. variable length ""
+	5. keyword variable length arguments
+
+1. positional arguments : position matters in a function call.
+	Ex:
+	def sum(a,b):
+		print(a-b)
+	sub(200,50)  --> a=200 and b=50
+	
+2. Keyboard arguments : .Order is not important, increses more readability
+	Ex:
+	def sub(a,b):
+		print(a-b)
+	sub(a=100, b=200)
+
+	Ex:
+	def wish(name, msg):
+		print('Hello: ', name, msg)
+	wish(name="Raja", msg="Good day")
+	wish(msg="Good day", name="Raja")
+	
+Note: In any function, we can also pass positional and keyboard arguments at a time. But we should pass positional arguments first and then pass keyboard arguments
+
+3. Default arguments :
+	Ex:
+	def wish(name="Raja")
+		print("Hello ",name,"Good morning")
+	wish("Rama")
+	wish() --> takes default value
+
+4. Variable length arguments : we can pass any number of arguments. by default these arguments stored in the form of tuple
+	Ex: 
+	def m1(*n):
+		print(type(n))
+		print('var-arg fun')
+	m1()
+	m1(10)
+	m1(10,20,30)
+Ex:
+def sum(*n):
+	total=0
+	for n1 in n:
+		total+=n1
+	print("The sum is : ", total)
+sum()
+sum(10,20)
+sum(10,20,30)
+
+Ex:
+def f1(*n,x):
+    print('normal argument',x)
+    print('variable length argument : ')
+    for i in n:
+        print(i)
+# f1() 
+# f1(10)
+f1(x=10)
+# f1(10,20,30)
+f1(10,20,x=30)
+# f1(x=10, 20,30)
+
+5. variable length keyboard arguments : any no of keywords arguments can be passed. It's default type is dictionary
+Ex:
+
+def f1(**kwargs):
+	print('variable length keyword argument method')
+	for k,v in kwargs.items():
+		print(k,'=',v)
+f1(x=10, y=20, z=30)
+f1(name="Raja",sub1="python",sub2="java")
+
+Ex :
+
+def f1(a,b,c,*n,x=25):
+	...
+	...
+f1(10,20,c=30,1,2,3,x=99)
+
+> In core python, variables in functional programming are two types 1.local 2. global
+
+Ex:
+a=10 -> by defacult it is global variable
+def f1():
+	b=10 -> by default it is local variable
+	
+> global keyword: using global keyword we can declare glabal variable with in function
+
+Ex:
+def f1():
+	global a
+	a=999
+	print(a)
+def f2():
+	print(a)
+f1()
+f2()
+
+Recursive functions:
+--------------------
+
+A function calling itself again and again
+
+> we can reduce length of the code
+> we can solve complex problems easily
+
+Ex: factorial operation using recursive function
+
+def factorial(n):
+    if n==0:
+        return 1
+    else:
+        return n*factorial(n-1)
+print('Factorial of 4 is :', factorial(4))
+
+Anonymous functions : [  lambda functions or lambda expressions  ]
+==================================================================
+
+> If functions declared without name. That functions are called as "Anonymous functions". We use these functions instantly
+Ex: 
+def square(n):
+	return n*n
+print(square(4))
+
+> same example using lambda function :
+Ex: square
+s=lambda n:n*n
+print(s(5))
+
+Ex: Sum
+sum=lambda a,b:a+b
+print(sum(2,3))
+
+Ex: largest
+s=lambda a,b:a if a>b else b
+print(s(89,66))
+
+> Every lambda function returns value implicitely. No need to write 'return' keyword
+
+*** filter(), map(), reduce() functions : 
+=========================================
+
+filter(function,sequence) :
+---------------------------
+
+> filter function filters no of elements based on given condition inside any sequence (list,string,tuple,...)
+
+Ex:
+
+l=[0,5,10,15,20,25,30,35,40,45,50]
+def isEven(n):
+	if n%2==0:
+		return True
+	else:
+		return False
+l1=list(filter(isEven,l))
+print(l1)
+
+using lambda expression :
+-------------------------
+
+l=[0,5,10,15,20,25,30,35,40,45,50]
+l1=list(filter(lambda n:n%2==0,l))
+print(l1)
+
+map(function,sequence): map function performs functional operational inside any sequence (list,string,tuple,...)
+-----------------------
+
+Ex: 
+def cube(n):
+	return n**3
+l=[2,3,5,7,11]
+l1=list(map(cube,l))
+print(l1)
+
+or
+
+l=[2,3,5,7,11]
+l1=list(map(lambda n:n**3,l))
+print(l1)
+
+Ex : product of two lists
+
+l1=[2,3,5,7,11]
+l2=[4,2,3,5,8]
+l3=list(map(lambda x,y:x*y, l1, l2))
+print(l3)
+
+***reduce(function,sequence):
+-----------------------------
+
+> It reduces sequence of elements
+> returns only a value. type casting is not required
+> reduce() is not implicitely available. To use this method, we need to explicitly import this method from "functools" module
+									"from functools import reduce"
+Ex:
+from functools import reduce
+l=[10,20,30,40,50]
+result=reduce(lambda x,y:x+y,l)
+print(result)
+
+Function aliasing : Giving another name to the existing function
+----------------------------------------------------------------
+
+Ex:
+def add(n1,n2):
+    return n1+n2
+a=int(input("Enter n1 : "))
+b=int(input("Enter n2 : "))
+add(a,b)
+sum=add
+sum(a,b)
+print(sum(a,b))
+del add
+print(sum(a,b))
+print(add(a,b)) # error due to add() not available
+
+Nested functions :
+==================
+
+> define function inside another function is called as "nested functions"
+
+Ex:
+
+def f1():
+	print("outer function")
+	def f2():
+		print("inner function")
+	print("calling inner function from outer function")
+	f2()
+print("outer function calling")
+f1()
+
+> Inner function can't be accessible directly from outside inner function
+> To reduce no.of lines in the function. we can use "nested functions"
+
+Ex:
+
+def outer():
+	def add(*n):
+		print(sum(n))
+	add(10,20)
+outer()
+
+Ex:
+
+def f1():
+    def inner(*n):
+        sum=0
+        for i in n:
+            sum+=i
+        return sum
+    print("Addition of a and b is ",inner(2,3,5))
+    print("Addition of a and b is ",inner(4,5))
+    print("Addition of a and b is ",inner(101,209))
+    print("Addition of a and b is ",inner(3333,9))
+    print("Addition of a and b is ",inner(1908,76))
+    print("Addition of a and b is ",inner(98669,98698))
+    print("Addition of a and b is ",inner())
+    print("Addition of a and b is ",inner(98,66,9,98,6,98))
+f1()
+
+***Function Decorators :
+========================
+
+> To add extra functionality to the function without changing its original functionality, we can use function Decorators
+
+Ex:
+
+def decor(func):
+    def inner():
+        print('Enhanced function')
+    return inner
+
+@decor
+def f3():
+    print('Normal function')
+    
+f3()
+
+Ex:
+
+def decor1(func):
+    def inner():
+        func()
+        print('Enhanced function for f1')
+    return inner
+
+def decor2(func):
+    def inner():
+        print('Enhanced function for f2')
+    return inner
+
+def decor3(func):
+    def inner():
+        print('Enhanced function for f3')
+    return inner
+
+@decor1
+def f1():
+    print('Normal function for f1')
+
+@decor2
+def f2():
+    print('Normal function for f2')
+
+@decor3
+def f3():
+    print('Normal function for f3')
+
+f1()
+f2()
+f3()
+
+Ex:
+
+def decor(func):
+    def inner(name):
+        if name=='Rama':
+            print("Hi Rama")
+    return inner
+
+@decor
+def f1(name):
+    print("Hello ",name)
+
+f1("Krishna")
+f1("Rama")
+
+Exception Handling :
+====================
+
+> Any programming language there are two type of errors are possible :
+	1) syntax errors and 2) Run time errors
+> Exception handling concept to handle runtime errors.
+> Exception : It is an unexpected event occurs during run time execution of the program
+> Ex : ZeroDivisionError, TypeError, ValueError, FileNotFoundError, EOFError ... etc
+> Exception handling concept provides alternate way to complete execution flow of your program
+> Ex. programming requirement is reading data from remote file locating at 
+	London. At runtime if london file is not available then the program should not be 
+	terminated abnormally. We have to provide local file to continue rest of the program 
+	normally. This way of defining alternative is nothing but exception handling.
+	
+	try :
+			read data from remote file locating at london
+	except FileNotFoundError:
+			use local file and continue rest of the program normally
+		
+> Every exception in python is an object. For every Exception type, the correpomding classes are available
+
+try/except block :
+
+stmt 1
+try:
+	stmt 2
+	stmt 3
+	stmt 4
+except Ex:
+	stmt 5
+stmt 6
+
+Ex:
+print('Hello')
+print(10/0) --> ZeroDivisionError
+print('Hi')
+
+using exception handling :
+-------------------------
+print('Hello')
+try:
+	print(10/0)
+execpt ZeroDivisionError:
+	print(10/2)
+print('Hi')	
+Exception hierarchy :
+=====================
+
+BaseException(super class): 1.Exception		2. SystemExit		3. GeneratorExit		4. KeyboardInterrupt
+> Exception : Attribute Error, Arithmatic Error, EOF Error,  Name Error,  Lookup error,  OS Error,  Type Error, Value Error
+> Arithmatic error: ZeroDivisionError, FloatingPointError,  OverflowError
+> Lookup Error: Index Error, Key Error
+> OS Error: FileNotFoundError, InterruptedError, PermissionError, TimeOutError
+
+> How to print exception information :
+--------------------------------------
+
+try:
+	print(10/0)
+except ZeroDivisionError as msg:
+	print('Exception raised : ',msg)
+	
+> try with multiple excepts :
+-----------------------------
+
+try:
+	...
+	...
+	...
+except ZeroDivisionError as msg1:
+	print('Raised Exception : ',msg1)
+except FileNotFoundError as msg2:
+	print('Raised Exception : ',msg2)
 	
 	
+Ex:
+
+try: 
+  x=int(input("Enter First Number: ")) 
+  y=int(input("Enter Second Number: ")) 
+  print(x/y) 
+except ZeroDivisionError: 
+  print("Can't Divide with Zero") 
+except ValueError: 
+  print("please provide int value only")
+  
+> Single except block that can handle multiple exceptions :
+-----------------------------------------------------------
+
+> We can write a single except block that can handle multiple different types of exceptions
+
+	except (Exception1,Exception2,exception3,..): or
+	except (Exception1,Exception2,exception3,..) as msg : 
+
+> Parenthesis are mandatory and this group of exceptions internally considered as tuple.
+
+Ex:
+
+try: 
+	x=int(input("Enter First Number: ")) 
+	y=int(input("Enter Second Number: ")) 
+	print(x/y) 
+except (ZeroDivisionError,ValueError) as msg: 
+	print("Plz Provide valid numbers only and problem is: ",msg)
 	
+> Default except block:
+-----------------------
+
+> We can use default except block to handle any type of exceptions.
+> In default except block generally we can print normal error messages.
+	Syntax: 
+	 except:
+	 statements
+Eg:
+try: 
+	 x=int(input("Enter First Number: ")) 
+	 y=int(input("Enter Second Number: ")) 
+	 print(x/y) 
+except ZeroDivisionError: 
+	print("ZeroDivisionError:Can't divide with zero") 
+except: 
+	print("Default Except:Plz provide valid input only") 
+ 
+D:\Python_classes>py test.py 
+Enter First Number: 10 
+Enter Second Number: 0 
+ZeroDivisionError:Can't divide with zero
+
+***Note: If try with multiple except blocks available then default except block should be 
+		last,otherwise we will get SyntaxError.
+
+Eg:
+try: 
+	print(10/0) 
+except: 
+	print("Default Except") 
+except ZeroDivisionError: 
+	print("ZeroDivisionError") 
+ 
+SyntaxError: default 'except:' must be last 
+
+> Note: The following are various possible combinations of except blocks
+	1. except ZeroDivisionError:
+	2. except ZeroDivisionError as msg:
+	3. except (ZeroDivisionError,ValueError) :
+	4. except (ZeroDivisionError,ValueError) as msg:
+	5. except :
+
+finally block:
+==============
+
+> It is not recommended to maintain clean up code(Resource Deallocating Code or 
+Resource Releasing code) inside try block because there is no guarentee for the execution 
+of every statement inside try block always.
+
+> It is not recommended to maintain clean up code inside except block, because if there 
+is no exception then except block won't be executed.
+
+> Hence we required some place to maintain clean up code which should be executed 
+always irrespective of whether exception raised or not raised and whether exception 
+handled or not handled. Such type of best place is nothing but 'finally block'.
+
+> Hence the main purpose of finally block is to maintain clean up code.
+
+	try:
+	 Risky Code
+	except: 
+	 Handling Code
+	finally:
+	 Cleanup code
+ 
+Case-1: If there is no exception
+	try: 
+		print("try") 
+	except: 
+		print("except") 
+	finally: 
+		print("finally") 
+ 
+Output:
+ try 
+ finally
+
+Case-2: If there is an exception raised but handled:
+	try: 
+		 print("try") 
+		 print(10/0) 
+	except ZeroDivisionError: 
+		print("except") 
+	finally: 
+		print("finally") 
+Output
+	try
+	except 
+	finally 
+
+Case-3: If there is an exception raised but not handled:
+	try: 
+		print("try") 
+		print(10/0) 
+	except NameError: 
+		print("except") 
+	finally: 
+		print("finally") 
+	 
+Output :
+	try 
+	finally 
+	ZeroDivisionError: division by zero(Abnormal Termination) 
+
+*** Note: There is only one situation where finally block won't be executed i.e, whenever 
+	we are using os._exit(0) function.
+
+
+> Whenever we are using os._exit(0) function then Python Virtual Machine itself will be 
+	shutdown. In this particular case finally won't be executed.
+
+import os
+try: 
+	print("try") 
+	os._exit(0) 
+except NameError: 
+	print("except") 
+finally: 
+	print("finally") 
+ 
+Output
+	try 
+> Note:
+	os._exit(0)
+	 where 0 represents status code and it indicates normal termination
+	 There are multiple status codes are possible.
+ 
+Control flow in try-except-finally:
+
+	try:
+	 stmt-1
+	 stmt-2
+	 stmt-3
+	except:
+	 stmt-4
+	finally:
+	 stmt-5
+	stmt6
+ 
+Case-1: If there is no exception
+
+	1,2,3,5,6 Normal Termination
+Case-2: If an exception raised at stmt2 and the corresponding except block matched
+	1,4,5,6 Normal Termination
+Case-3: If an exception raised at stmt2 but the corresponding except block not matched
+	1,5 Abnormal Termination
+Case-4:If an exception raised at stmt4 then it is always abnormal termination but before 
+	that finally block will be executed.
+Case-5: If an exception raised at stmt-5 or at stmt-6 then it is always abnormal 
+	termination
+
+Nested try-except-finally blocks:
+> We can take try-except-finally blocks inside try or except or finally blocks.i.e nesting of tryexcept-finally is possible.
+	try:
+	 ----------
+	 ----------
+	 ----------
+	 try:
+	 -------------
+	 --------------
+	 --------------
+	 except:
+	 --------------
+	 --------------
+	 --------------
+	 ------------
+	except:
+	 -----------
+	 -----------
+	 -----------
+> General Risky code we have to take inside outer try block and too much risky code we 
+	have to take inside inner try block. Inside Inner try block if an exception raised then inner 
+	except block is responsible to handle. If it is unable to handle then outer except block is 
+	responsible to handle.
+
+Eg:
+ try: 
+	print("outer try block") 
+	try: 
+		print("Inner try block") 
+		print(10/0) 
+	except ZeroDivisionError: 
+		print("Inner except block") 
+	finally: 
+	    print("Inner finally block")
+except: 
+	print("outer except block") 
+finally: 
+	print("outer finally block")
+	
+ Output
+ outer try block 
+ Inner try block 
+ Inner except block 
+ Inner finally block 
+ outer finally block
+
+Control flow in nested try-except-finally:
+try:
+	stmt-1
+	stmt-2
+	stmt-3
+	try:
+		stmt-4
+		stmt-5
+		stmt-6
+	except X:
+		stmt-7
+	finally:
+		stmt-8
+		stmt-9
+except Y:
+	stmt-10
+finally:
+	stmt-11
+	stmt-12
+
+case-1: If there is no exception
+	1,2,3,4,5,6,8,9,11,12 Normal Termination
+case-2: If an exception raised at stmt-2 and the corresponding except block matched
+	1,10,11,12 Normal Termination
+case-3: If an exceptiion raised at stmt-2 and the corresponding except block not matched
+	1,11,Abnormal Termination
+case-4: If an exception raised at stmt-5 and inner except block matched 
+	1,2,3,4,7,8,9,11,12 Normal Termination
+case-5: If an exception raised at stmt-5 and inner except block not matched but outer except block matched
+	1,2,3,4,8,10,11,12,Normal Termination
+case-6:If an exception raised at stmt-5 and both inner and outer except blocks are not matched 
+	1,2,3,4,8,11,Abnormal Termination
+case-7: If an exception raised at stmt-7 and corresponding except block matched
+	1,2,3,.,.,.,8,10,11,12,Normal Termination
+case-8: If an exception raised at stmt-7 and corresponding except block not matched
+	1,2,3,.,.,.,8,11,Abnormal Termination
+case-9: If an exception raised at stmt-8 and corresponding except block matched
+	1,2,3,.,.,.,.,10,11,12 Normal Termination
+case-10: If an exception raised at stmt-8 and corresponding except block not matched
+	1,2,3,.,.,.,.,11,Abnormal Termination
+case-11: If an exception raised at stmt-9 and corresponding except block matched
+	1,2,3,.,.,.,.,8,10,11,12,Normal Termination
+case-12: If an exception raised at stmt-9 and corresponding except block not matched
+	1,2,3,.,.,.,.,8,11,Abnormal Termination
+case-13: If an exception raised at stmt-10 then it is always abonormal termination but before abnormal termination finally block(stmt-11) will be executed
+case-14: If an exception raised at stmt-11 or stmt-12 then it is always abnormal termination.
+> Note: If the control entered into try block then compulsary finally block will be executed.If the control not entered into try block then finally block won't be executed.
+
+else block with try-except-finally:
+-----------------------------------
+
+> We can use else block with try-except-finally blocks.
+> else block will be executed if and only if there are no exceptions inside try block.
+
+try:
+	Risky Code
+except:
+	will be executed if exception inside try
+else:
+	will be executed if there is no exception inside try
+finally:
+	will be executed whether exception raised or not raised and handled or not handled
+
+Eg:
+try:
+	print("try")
+	print(10/0)--->1
+except:
+	print("except")
+else:
+	print("else")
+finally:
+	print("finally")
+
+> If we comment line-1 then else block will be executed b'z there is no exception inside try.
+> In this case the output is:
+	try
+	else
+	finally
+> If we are not commenting line-1 then else block won't be executed b'z there is exception 
+
+inside try block. In this case output is:
+	try
+	except
+	finally
+
+Various possible combinations of try-except-else-finally:
+
+	1. Whenever we are writing try block, compulsory we should write except or finally block.i.e without except or finally block we cannot write try block.
+	2. Wheneever we are writing except block, compulsory we should write try block. i.e	except without try is always invalid.
+	3. Whenever we are writing finally block, compulsory we should write try block. i.e finally	without try is always invalid.
+	4. We can write multiple except blocks for the same try,but we cannot write multiple 	finally blocks for the same try
+	5. Whenever we are writing else block compulsory except block should be there. i.e 	without except we cannot write else block.
+	6. In try-except-else-finally order is important.
