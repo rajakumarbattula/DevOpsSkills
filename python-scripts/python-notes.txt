@@ -2007,6 +2007,8 @@ except (ZeroDivisionError,ValueError) as msg:
 	print("Plz Provide valid numbers only and problem is: ",msg)
 	
 > Default except block:
+-----------------------
+
 > We can use default except block to handle any type of exceptions.
 > In default except block generally we can print normal error messages.
 	Syntax: 
@@ -2053,12 +2055,16 @@ finally block:
 > It is not recommended to maintain clean up code(Resource Deallocating Code or 
 Resource Releasing code) inside try block because there is no guarentee for the execution 
 of every statement inside try block always.
+
 > It is not recommended to maintain clean up code inside except block, because if there 
 is no exception then except block won't be executed.
-Hence we required some place to maintain clean up code which should be executed 
+
+> Hence we required some place to maintain clean up code which should be executed 
 always irrespective of whether exception raised or not raised and whether exception 
-handled or not handled. Such type of best place is nothing but finally block.
-Hence the main purpose of finally block is to maintain clean up code.
+handled or not handled. Such type of best place is nothing but 'finally block'.
+
+> Hence the main purpose of finally block is to maintain clean up code.
+
 	try:
 	 Risky Code
 	except: 
@@ -2105,14 +2111,14 @@ Output :
 	finally 
 	ZeroDivisionError: division by zero(Abnormal Termination) 
 
-*** Note: There is only one situation where finally block won't be executed ie whenever 
+*** Note: There is only one situation where finally block won't be executed i.e, whenever 
 	we are using os._exit(0) function.
 
 
 > Whenever we are using os._exit(0) function then Python Virtual Machine itself will be 
-	shutdown.In this particular case finally won't be executed.
+	shutdown. In this particular case finally won't be executed.
 
-imports 
+import os
 try: 
 	print("try") 
 	os._exit(0) 
@@ -2185,12 +2191,12 @@ Eg:
 	except ZeroDivisionError: 
 		print("Inner except block") 
 	finally: 
-	print("Inner finally block") 
- except: 
+	    print("Inner finally block")
+except: 
 	print("outer except block") 
- finally: 
-	print("outer finally block") 
- 
+finally: 
+	print("outer finally block")
+	
  Output
  outer try block 
  Inner try block 
