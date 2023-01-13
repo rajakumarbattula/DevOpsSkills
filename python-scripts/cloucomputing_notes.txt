@@ -1,0 +1,29 @@
+cloud computing :
+=================
+
+> Cloud computing provides an easy way to access servers, storage, databases and broad set of applications services over the internet
+
+> Advantages :
+
+-> Scalable 
+-> Multi-tenant
+-> Reliable
+-> Pay-and-use 
+-> storage
+
+Service models :
+================
+
+1. IaaS (Infrastructure as service)
+2. Paas (Platform as service)
+3. SaaS (Software as service)
+
+Deployment models :
+===================
+
+1. public cloud
+2. private cloud
+3. Hybrid cloud
+4. Comminity cloud
+5. Multi cloud
+

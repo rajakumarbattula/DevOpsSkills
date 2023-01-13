@@ -2279,10 +2279,12 @@ finally:
 	print("finally")
 
 > If we comment line-1 then else block will be executed b'z there is no exception inside try.
+
 > In this case the output is:
 	try
 	else
 	finally
+	
 > If we are not commenting line-1 then else block won't be executed b'z there is exception 
 
 inside try block. In this case output is:
@@ -2298,3 +2300,5 @@ Various possible combinations of try-except-else-finally:
 	4. We can write multiple except blocks for the same try,but we cannot write multiple 	finally blocks for the same try
 	5. Whenever we are writing else block compulsory except block should be there. i.e 	without except we cannot write else block.
 	6. In try-except-else-finally order is important.
+	
+	

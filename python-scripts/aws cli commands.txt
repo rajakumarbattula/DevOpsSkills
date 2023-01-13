@@ -1,0 +1,23 @@
+aws cli commands :
+==================
+
+aws configure
+
+aws iam list-users
+
+aws ec2 run-instances --image-id ami-05fa00d4c63e32376 --count 1 --instance-type t2.micro --key-name "C:\Users\Lenovo\Downloads\awsdevops.pem" --security-group-ids sg-c309a9c8 --subnet-id subnet-d7f567f6
+
+# to create tag for your instance
+
+aws ec2 create-tags --resources <instance-id> --tags Key=Name,Value=MyInstance
+
+# to list ec2 instances
+
+aws ec2 describe-instances
+
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+
+aws ec2 describe-instances --filters "Name=tag:Name,Values=MyInstance"
+
+aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"
+
